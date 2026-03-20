@@ -715,7 +715,7 @@ function NewsPage() {
             <div className="phero-ey"><div className="phero-bar" /><span className="phero-lbl">Industry Insights</span></div>
             <div className="phero-t">行业资讯</div>
             <div className="phero-d" style={{ maxWidth:500 }}>
-              围绕餐饮食材行业、门店经营与产品趋势，持续分享值得关注的内容。
+              111
             </div>
             <div className="news-tabs">
               {CATS.map(c => (
@@ -955,7 +955,7 @@ function HomePage({ nav }) {
 
       <section className="sec">
         <div className="W">
-          <SH n="05" label="FAQ" title="常见问题" desc="先把客户最常问的问题讲清楚，比堆很多宣传词更有效。" />
+          <SH n="05" label="FAQ" title="常见问题" desc="" />
           <R d={0.08}><div className="faq-list">{FAQ.map(f => (
             <div className="faq-item" key={f.q}>
               <div className="faq-q">{f.q}</div><div className="faq-a">{f.a}</div>
@@ -970,7 +970,7 @@ function HomePage({ nav }) {
 
 function ProductsPage({ nav }) {
   return (<>
-    <PhHero eyebrow="Product System" title="产品分类与应用场景" desc="把产品分类、适配场景和合作方向讲清楚，让客户更容易理解我们不只是卖货，而是懂门店经营的供货方。" />
+    <PhHero eyebrow="Product System" title="产品分类与应用场景" desc="" />
     <section className="sec"><div className="W">
       <SH n="01" label="Overview" title="产品体系概览" desc="围绕烧烤夜市小吃、西式、日式、高端台式、特色餐饮、火锅茶餐厅等方向，形成完整的餐饮应用型产品体系。" />
       <R d={0.08}><div className="prd-list" style={{borderTop:'1px solid var(--rule)'}}>{PRODUCTS.map(p => (
@@ -989,7 +989,7 @@ function ProductsPage({ nav }) {
 
 function PrivateLabelPage({ nav }) {
   return (<>
-    <PhHero eyebrow="Private Label" title="定制贴牌合作" desc="当客户希望做差异化产品、强化品牌辨识度或推进更深合作时，定制贴牌就是更合适的方向。" />
+    <PhHero eyebrow="Private Label" title="定制贴牌合作" desc="" />
     <section className="sec"><div className="W">
       <SH n="01" label="For who" title="哪些客户适合做定制贴牌" desc="对有品牌意识、产品升级诉求和长期合作计划的客户，贴牌合作有更强的价值。" />
       <R d={0.08}><div className="proc">{['希望做差异化产品的餐饮品牌','希望强化品牌辨识度的连锁门店','希望从单次拿货转为深度合作的客户','希望形成专属产品结构的门店'].map((t,i) => (
@@ -1014,9 +1014,9 @@ function PrivateLabelPage({ nav }) {
 
 function CasesPage({ nav }) {
   return (<>
-    <PhHero eyebrow="Cases" title="合作案例与合作方式" desc="先把客户类型、问题、合作方式和结果方向写清楚，就已经比只有一句「合作过很多客户」强很多。" />
+    <PhHero eyebrow="Cases" title="合作案例与合作方式" desc="" />
     <section className="sec"><div className="W">
-      <SH n="01" label="Highlights" title="案例摘要" desc="后续可继续补充更具体的数据、门店背景和产品方向，逐步沉淀成更完整的案例库。" />
+      <SH n="01" label="Highlights" title="案例摘要" desc="" />
       <R d={0.08}><div className="case-list">{CASES.map((c,i) => (
         <div className="case-row" key={c.client}>
           <div className="case-n">0{i+1}</div>
