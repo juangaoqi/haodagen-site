@@ -2131,8 +2131,8 @@ function ContactPage() {
           {[
             ['适合场景','供货合作、选品支持、产品升级与品牌定制，烧烤、西式、烘焙、日式等多种餐饮门店。'],
             ['合作咨询','可先做需求沟通，再匹配产品与合作方式，不预设合作门槛。'],
-            ['微信',    haodagenwj],
-            ['电话',    18052888358],
+            ['微信',    'haodagenwj'],
+            ['电话',    '18052888358'],
           ].map(([l,v]) => (
             <div className="con-ib" key={l}><div className="con-il">{l}</div><div className="con-iv">{v}</div></div>
           ))}
