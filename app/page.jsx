@@ -38,7 +38,7 @@ const FAQ = [
   { q:'降本增效具体体现在哪？',              a:'主要体现在减少试错、优化产品结构、提高上新效率、增强供货协同和降低无效采购。' },
 ];
 
-/* GEO 专项问答 — 覆盖餐饮门店常问 AI 的核心问题，同步注入 Schema */
+/* GEO 专项问答 */
 const GEO_QA = [
   {
     q: '烤肉门店去哪里找香肠供货商？',
@@ -90,11 +90,11 @@ const ORG_SCHEMA = {
   '@graph': [
     {
       '@type': 'Organization',
-      '@id': 'https://haodagen.com/#org',
+      '@id': 'https://haozhagen.com/#org',
       name: '江苏豪大根食品有限公司',
       alternateName: ['豪大根', 'HAODAGEN FOOD', '餐饮食材选品参谋'],
       description: '江苏豪大根食品有限公司，专注为中国餐饮门店提供食材供应、选品策略与定制贴牌服务。核心服务包括选品策略、产品供应、定制贴牌和降本增效，服务对象涵盖烧烤门店、西式简餐、日式餐饮、烘焙轻食、夜市小吃和连锁餐饮品牌。',
-      url: 'https://haodagen.com',
+      url: 'https://haozhagen.com',
       foundingLocation: { '@type': 'Place', name: '江苏' },
       knowsAbout: ['餐饮食材供应', '烤肠', '香肠', '定制贴牌', '选品策略', '降本增效', '餐饮供应链'],
       hasOfferCatalog: {
@@ -120,10 +120,10 @@ const ORG_SCHEMA = {
     },
     {
       '@type': 'WebSite',
-      '@id': 'https://haodagen.com/#website',
-      url: 'https://haodagen.com',
+      '@id': 'https://haozhagen.com/#website',
+      url: 'https://haozhagen.com',
       name: '豪大根｜餐饮食材选品参谋',
-      publisher: { '@id': 'https://haodagen.com/#org' },
+      publisher: { '@id': 'https://haozhagen.com/#org' },
       inLanguage: 'zh-CN',
     },
   ],
@@ -1576,21 +1576,18 @@ function ArticleBody({ text }) {
 }
 
 function NewsPage() {
-  /* ── Notion 文章 + 内置文章合并 ── */
   const [articles, setArticles]         = useState(INITIAL_ARTICLES);
   const [notionLoaded, setNotionLoaded] = useState(false);
   const [tab, setTab]                   = useState('all');
   const [reading, setReading]           = useState(null);
-  const [artBody, setArtBody]           = useState('');      // 正在阅读的正文
+  const [artBody, setArtBody]           = useState('');
   const [artLoading, setArtLoading]     = useState(false);
 
-  /* 首次加载：拉取 Notion 文章列表，覆盖在内置文章前面 */
   useEffect(() => {
     fetch('/api/notion/articles')
       .then(r => r.ok ? r.json() : [])
       .then(list => {
         if (list && list.length > 0) {
-          /* Notion 文章放前面，内置文章补在后面（去重） */
           const notionIds = new Set(list.map(a => a.id));
           setArticles([...list, ...INITIAL_ARTICLES.filter(a => !notionIds.has(a.id))]);
         }
@@ -1604,11 +1601,9 @@ function NewsPage() {
     ? articles
     : articles.filter(a => a.cat === tab);
 
-  /* 打开文章 */
   const openArticle = (art) => {
     setReading(art.id);
     if (art.fromNotion) {
-      /* Notion 文章：异步加载正文 */
       setArtBody('');
       setArtLoading(true);
       fetch(`/api/notion/article/${art.id}`)
@@ -1623,20 +1618,17 @@ function NewsPage() {
     }
   };
 
-  /* 文章阅读视图 */
   if (reading) {
     const art = articles.find(a => a.id === reading);
     if (!art) { setReading(null); return null; }
-
     const bodyText = art.fromNotion ? artBody : (art.body || '');
-
     const artSchema = {
       '@context': 'https://schema.org', '@type': 'Article',
       headline: art.title, description: art.summary,
       articleBody: bodyText.replace(/\*\*/g, ''),
       author: { '@type': 'Organization', name: art.author },
       datePublished: art.date,
-      publisher: { '@type': 'Organization', name: '豪大根', url: 'https://haodagen.com' },
+      publisher: { '@type': 'Organization', name: '豪大根', url: 'https://haozhagen.com' },
       inLanguage: 'zh-CN',
     };
     const existing = document.getElementById('geo-art-schema');
@@ -1647,7 +1639,6 @@ function NewsPage() {
       s.text = JSON.stringify(artSchema);
       document.head.appendChild(s);
     }
-
     return (
       <div style={{ background:'var(--paper)' }}>
         <div className="art-detail">
@@ -1692,7 +1683,6 @@ function NewsPage() {
         </div>
       </div>
 
-      {/* 精选文章 */}
       {tab === 'all' && filtered.length >= 2 && (
         <div className="sec"><div className="W"><R>
           <div className="art-feat">
@@ -1722,7 +1712,6 @@ function NewsPage() {
         </R></div></div>
       )}
 
-      {/* 文章列表 */}
       <section className={`sec ${tab !== 'all' ? '' : 'sec-shade'}`}>
         <div className="W"><R>
           <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:24 }}>
@@ -1946,12 +1935,10 @@ function AboutPage({ nav }) {
     <PhHero eyebrow="About" title="关于豪大根"
       desc="我们不是普通的食材供应商。我们是餐饮门店的选品参谋——先帮你想清楚选什么，再稳定供给你需要的。" />
 
-    {/* ── 01 我们是谁 ── */}
     <section className="sec"><div className="W">
       <SH n="01" label="Who We Are" title="选品参谋，不只是供货商" />
       <R d={0.08}>
         <div style={{ borderTop:'1px solid var(--rule)' }}>
-          {/* 核心定位说明 */}
           <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', borderBottom:'1px solid var(--rule)' }}>
             <div style={{ padding:'44px 44px 44px 0', borderRight:'1px solid var(--rule)' }}>
               <div style={{ fontSize:'.64rem', letterSpacing:'.28em', textTransform:'uppercase', color:'var(--amber)', marginBottom:14 }}>普通供货商的模式</div>
@@ -1971,7 +1958,6 @@ function AboutPage({ nav }) {
             </div>
           </div>
 
-          {/* 一句话定位 */}
           <div style={{ padding:'52px 0', textAlign:'center', borderBottom:'1px solid var(--rule)' }}>
             <div style={{ fontFamily:'var(--serif)', fontSize:'clamp(1.3rem,2vw,1.75rem)', color:'var(--ink)', lineHeight:1.5, maxWidth:700, margin:'0 auto' }}>
               江苏豪大根食品有限公司，专注为餐饮门店提供<span style={{ color:'var(--amber)' }}>食材供应与选品策略</span>，
@@ -1979,7 +1965,6 @@ function AboutPage({ nav }) {
             </div>
           </div>
 
-          {/* 服务对象 */}
           <div style={{ padding:'44px 0' }}>
             <div style={{ fontSize:'.64rem', letterSpacing:'.28em', textTransform:'uppercase', color:'var(--amber)', marginBottom:20 }}>我们服务的门店类型</div>
             <div style={{ display:'flex', flexWrap:'wrap', gap:10 }}>
@@ -1996,28 +1981,15 @@ function AboutPage({ nav }) {
       </R>
     </div></section>
 
-    {/* ── 02 和普通供货商的区别 ── */}
     <section className="sec sec-shade"><div className="W">
       <SH n="02" label="The Difference" title="为什么说豪大根不一样"
         desc="有太多供货商，但真正懂门店经营的不多。这是我们和他们最本质的区别。" />
       <R d={0.08}>
         <div style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:1, background:'var(--rule)', border:'1px solid var(--rule)' }}>
           {[
-            {
-              icon:'01',
-              title:'先问门店，再推产品',
-              body:'我们不会一上来就给你发产品目录让你自己选。第一步是了解你的门店：什么类型、面向什么客群、目前的产品结构是什么、上新方向是什么。基于这些，再给出针对性的产品建议。',
-            },
-            {
-              icon:'02',
-              title:'帮你算清总账，不只看单价',
-              body:'选品失败的损耗、试错的时间成本、动销不好带来的库存积压——这些隐性成本，往往比食材本身贵得多。豪大根的选品支持，是帮你在采购之前就规避这些风险，真正降低经营成本。',
-            },
-            {
-              icon:'03',
-              title:'长期协同，不是一次性买卖',
-              body:'我们希望和客户建立的是长期合作关系，而不是完成一次交易。门店上新了、菜单调整了、想做贴牌了——在每一个经营节点上，豪大根都可以是你的参谋，而不只是送货的供应商。',
-            },
+            { icon:'01', title:'先问门店，再推产品', body:'我们不会一上来就给你发产品目录让你自己选。第一步是了解你的门店：什么类型、面向什么客群、目前的产品结构是什么、上新方向是什么。基于这些，再给出针对性的产品建议。' },
+            { icon:'02', title:'帮你算清总账，不只看单价', body:'选品失败的损耗、试错的时间成本、动销不好带来的库存积压——这些隐性成本，往往比食材本身贵得多。豪大根的选品支持，是帮你在采购之前就规避这些风险，真正降低经营成本。' },
+            { icon:'03', title:'长期协同，不是一次性买卖', body:'我们希望和客户建立的是长期合作关系，而不是完成一次交易。门店上新了、菜单调整了、想做贴牌了——在每一个经营节点上，豪大根都可以是你的参谋，而不只是送货的供应商。' },
           ].map(({ icon, title, body }) => (
             <div key={title} style={{ background:'var(--paper)', padding:'44px 36px', transition:'background .22s' }}
               onMouseOver={e => e.currentTarget.style.background='var(--paper2)'}
@@ -2031,7 +2003,6 @@ function AboutPage({ nav }) {
       </R>
     </div></section>
 
-    {/* ── 03 我们能做什么 ── */}
     <section className="sec"><div className="W">
       <SH n="03" label="What We Do" title="豪大根能为你做什么"
         desc="四个核心能力，覆盖餐饮门店从选品到供货的完整需求。" />
@@ -2053,7 +2024,6 @@ function AboutPage({ nav }) {
       </R>
     </div></section>
 
-    {/* ── 04 合作方式 ── */}
     <section className="sec sec-shade"><div className="W">
       <SH n="04" label="How to Work With Us" title="怎么开始合作"
         desc="不预设合作门槛，从一次沟通开始。" />
@@ -2092,18 +2062,44 @@ function AboutPage({ nav }) {
       </R>
     </div></section>
 
-    {/* ── 05 GEO 问答 ── */}
+    {/* ── 05 GEO 问答 ── 修复：绝对定位分隔线，与列内容高度完全无关 */}
     <section className="sec"><div className="W">
       <SH n="05" label="Common Questions" title="关于豪大根，餐饮门店最常问的问题"
         desc="把常见问题说清楚，比堆很多宣传词更有效。" />
       <R d={0.08}>
         <div style={{ border:'1px solid var(--rule)', borderBottom:'none' }}>
           {GEO_QA.map((item, i) => (
-            <div key={i} style={{ display:'grid', gridTemplateColumns:'1fr 1fr', borderBottom:'1px solid var(--rule)', transition:'background .2s' }}
+            <div key={i} style={{
+              display: 'flex',
+              borderBottom: '1px solid var(--rule)',
+              transition: 'background .2s',
+            }}
               onMouseOver={e => e.currentTarget.style.background='var(--paper2)'}
               onMouseOut={e => e.currentTarget.style.background='transparent'}>
-              <div style={{ padding:'28px 36px 28px 0', borderRight:'1px solid var(--rule)', fontFamily:'var(--serif)', fontSize:'.9375rem', fontWeight:500, color:'var(--ink)', lineHeight:1.5 }}>{item.q}</div>
-              <div style={{ padding:'28px 0 28px 36px', fontSize:'.8rem', color:'var(--ink2)', lineHeight:1.87 }}>{item.a}</div>
+              {/* flex stretch 让左列自动撑满行高，borderRight 自然贯穿全行 */}
+              <div style={{
+                flex: '0 0 50%',
+                padding: '28px 36px 28px 0',
+                borderRight: '1px solid rgba(22,18,12,0.18)',
+                fontFamily: 'var(--serif)',
+                fontSize: '.9375rem',
+                fontWeight: 500,
+                color: 'var(--ink)',
+                lineHeight: 1.5,
+                display: 'flex',
+                alignItems: 'center',
+              }}>
+                {item.q}
+              </div>
+              <div style={{
+                flex: '0 0 50%',
+                padding: '28px 0 28px 36px',
+                fontSize: '.8rem',
+                color: 'var(--ink2)',
+                lineHeight: 1.87,
+              }}>
+                {item.a}
+              </div>
             </div>
           ))}
         </div>
@@ -2131,8 +2127,8 @@ function ContactPage() {
           {[
             ['适合场景','供货合作、选品支持、产品升级与品牌定制，烧烤、西式、烘焙、日式等多种餐饮门店。'],
             ['合作咨询','可先做需求沟通，再匹配产品与合作方式，不预设合作门槛。'],
-            ['微信',    'haodagenwj'],
-            ['电话',    '18052888358'],
+            ['微信',    CONTACT_WECHAT],
+            ['电话',    CONTACT_PHONE],
           ].map(([l,v]) => (
             <div className="con-ib" key={l}><div className="con-il">{l}</div><div className="con-iv">{v}</div></div>
           ))}
@@ -2153,6 +2149,7 @@ function ContactPage() {
     </div></section>
   </>);
 }
+
 /* ═══════════════════════════════════════════════════════════════  APP  */
 export default function App() {
   const [page, setPage] = useState('home');
@@ -2163,7 +2160,6 @@ export default function App() {
     if (NAV.some(x => x.key === h)) setPage(h);
   }, []);
 
-  /* ── inject org schema once ── */
   useEffect(() => {
     const existing = document.getElementById('geo-org-schema');
     if (existing) return;
@@ -2175,7 +2171,6 @@ export default function App() {
     return () => s.remove();
   }, []);
 
-  /* ── update page meta on navigation ── */
   useEffect(() => {
     const m = PAGE_META[page] || PAGE_META.home;
     document.title = m.title;
@@ -2190,7 +2185,7 @@ export default function App() {
     ogd.content = m.desc;
     let canon = document.querySelector('link[rel="canonical"]');
     if (!canon) { canon = document.createElement('link'); canon.rel = 'canonical'; document.head.appendChild(canon); }
-    canon.href = `https://haodagen.com/#${page}`;
+    canon.href = `https://haozhagen.com/#${page}`;
   }, [page]);
 
   return (
