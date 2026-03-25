@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 /* ═══════════════════════════════════════════════════════════════  DATA  */
 const NAV = [
@@ -2113,7 +2114,7 @@ function AboutPage({ nav }) {
 
 function ContactPage() {
   return (<>
-    <PhHero eyebrow="Contact" title="咨询合作" desc="把客户最关心的信息先收集起来，后续更方便匹配产品方案、供货方式和贴牌合作方向。" />
+    <PhHero eyebrow="Contact" title="咨询合作" desc="" />
     <section className="sec"><div className="W">
       <SH n="01" label="Cooperation" title="获取适合你门店的产品方案" />
       <R d={0.08}><div className="con">
@@ -2202,3 +2203,73 @@ export default function App() {
     </>
   );
 }
+
+/* ═══════════════════════════════════════════════════════════════  ROUTING WRAPPER  */
+export const ROUTE_MAP = {
+  home: '/',
+  products: '/products',
+  privateLabel: '/private-label',
+  cases: '/cases',
+  news: '/news',
+  about: '/about',
+  contact: '/contact',
+};
+
+export function useSiteNav() {
+  const router = useRouter();
+  return (key) => {
+    const path = ROUTE_MAP[key] || '/';
+    router.push(path);
+  };
+}
+
+export function SiteFrame({ currentPage, nav, children }) {
+  useEffect(() => {
+    let s = document.getElementById('geo-org-schema');
+    if (!s) {
+      s = document.createElement('script');
+      s.id = 'geo-org-schema';
+      s.type = 'application/ld+json';
+      s.text = JSON.stringify(ORG_SCHEMA);
+      document.head.appendChild(s);
+    }
+  }, []);
+
+  useEffect(() => {
+    const m = PAGE_META[currentPage] || PAGE_META.home;
+    document.title = m.title;
+    let desc = document.querySelector('meta[name="description"]');
+    if (!desc) { desc = document.createElement('meta'); desc.name = 'description'; document.head.appendChild(desc); }
+    desc.content = m.desc;
+    let og = document.querySelector('meta[property="og:title"]');
+    if (!og) { og = document.createElement('meta'); og.setAttribute('property','og:title'); document.head.appendChild(og); }
+    og.content = m.title;
+    let ogd = document.querySelector('meta[property="og:description"]');
+    if (!ogd) { ogd = document.createElement('meta'); ogd.setAttribute('property','og:description'); document.head.appendChild(ogd); }
+    ogd.content = m.desc;
+    let canon = document.querySelector('link[rel="canonical"]');
+    if (!canon) { canon = document.createElement('link'); canon.rel = 'canonical'; document.head.appendChild(canon); }
+    canon.href = `https://www.haozhagen.com${ROUTE_MAP[currentPage] || '/'}`;
+  }, [currentPage]);
+
+  return (
+    <>
+      <style>{CSS}</style>
+      <div className="shell">
+        <NavBar cur={currentPage} nav={nav} />
+        <main>{children}</main>
+        <Footer cur={currentPage} />
+      </div>
+    </>
+  );
+}
+
+export {
+  HomePage,
+  ProductsPage,
+  PrivateLabelPage,
+  CasesPage,
+  NewsPage,
+  AboutPage,
+  ContactPage,
+};
