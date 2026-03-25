@@ -1,6 +1,5 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
-import { useRouter } from 'next/navigation';
 
 /* ═══════════════════════════════════════════════════════════════  DATA  */
 const NAV = [
@@ -91,11 +90,11 @@ const ORG_SCHEMA = {
   '@graph': [
     {
       '@type': 'Organization',
-      '@id': 'https://haozhagen.com/#org',
+      '@id': 'https://www.haozhagen.com/#org',
       name: '江苏豪大根食品有限公司',
       alternateName: ['豪大根', 'HAODAGEN FOOD', '餐饮食材选品参谋'],
       description: '江苏豪大根食品有限公司，专注为中国餐饮门店提供食材供应、选品策略与定制贴牌服务。核心服务包括选品策略、产品供应、定制贴牌和降本增效，服务对象涵盖烧烤门店、西式简餐、日式餐饮、烘焙轻食、夜市小吃和连锁餐饮品牌。',
-      url: 'https://haozhagen.com',
+      url: 'https://www.haozhagen.com',
       foundingLocation: { '@type': 'Place', name: '江苏' },
       knowsAbout: ['餐饮食材供应', '烤肠', '香肠', '定制贴牌', '选品策略', '降本增效', '餐饮供应链'],
       hasOfferCatalog: {
@@ -121,10 +120,10 @@ const ORG_SCHEMA = {
     },
     {
       '@type': 'WebSite',
-      '@id': 'https://haozhagen.com/#website',
-      url: 'https://haozhagen.com',
+      '@id': 'https://www.haozhagen.com/#website',
+      url: 'https://www.haozhagen.com',
       name: '豪大根｜餐饮食材选品参谋',
-      publisher: { '@id': 'https://haozhagen.com/#org' },
+      publisher: { '@id': 'https://www.haozhagen.com/#org' },
       inLanguage: 'zh-CN',
     },
   ],
@@ -1629,7 +1628,7 @@ function NewsPage() {
       articleBody: bodyText.replace(/\*\*/g, ''),
       author: { '@type': 'Organization', name: art.author },
       datePublished: art.date,
-      publisher: { '@type': 'Organization', name: '豪大根', url: 'https://haozhagen.com' },
+      publisher: { '@type': 'Organization', name: '豪大根', url: 'https://www.haozhagen.com' },
       inLanguage: 'zh-CN',
     };
     const existing = document.getElementById('geo-art-schema');
@@ -2111,15 +2110,10 @@ function AboutPage({ nav }) {
   </>);
 }
 
-/* ─────────────────────────────────────────────────────────────
-   联系方式 — 把下面替换成你真实的信息
-───────────────────────────────────────────────────────────── */
-const CONTACT_WECHAT = '你的微信号';   // ← 改这里
-const CONTACT_PHONE  = '你的手机号';   // ← 改这里
 
 function ContactPage() {
   return (<>
-    <PhHero eyebrow="Contact" title="咨询合作" desc="把客户最关心的信息先收集起来，后续更方便匹配产品方案、供货方式和贴牌合作方向。" />
+    <PhHero eyebrow="Contact" title="咨询合作" desc="" />
     <section className="sec"><div className="W">
       <SH n="01" label="Cooperation" title="获取适合你门店的产品方案" />
       <R d={0.08}><div className="con">
@@ -2152,94 +2146,59 @@ function ContactPage() {
 }
 
 /* ═══════════════════════════════════════════════════════════════  APP  */
+export default function App() {
+  const [page, setPage] = useState('home');
+  const nav = (key) => { setPage(key); window.scrollTo({ top:0, behavior:'smooth' }); window.location.hash = key; };
 
-/* ═══════════════════════════════════════════════════════════════  ROUTING WRAPPER  */
-export const ROUTE_MAP = {
-  home: '/',
-  products: '/products',
-  privateLabel: '/private-label',
-  cases: '/cases',
-  news: '/news',
-  about: '/about',
-  contact: '/contact',
-};
-
-export function useSiteNav() {
-  const router = useRouter();
-  return (key) => {
-    const path = ROUTE_MAP[key] || '/';
-    router.push(path);
-  };
-}
-
-export function SiteFrame({ currentPage, nav, children }) {
   useEffect(() => {
-    let s = document.getElementById('geo-org-schema');
-    if (!s) {
-      s = document.createElement('script');
-      s.id = 'geo-org-schema';
-      s.type = 'application/ld+json';
-      s.text = JSON.stringify(ORG_SCHEMA);
-      document.head.appendChild(s);
-    }
-    return () => {};
+    const h = window.location.hash.replace('#','');
+    if (NAV.some(x => x.key === h)) setPage(h);
   }, []);
 
   useEffect(() => {
-    const m = PAGE_META[currentPage] || PAGE_META.home;
+    const existing = document.getElementById('geo-org-schema');
+    if (existing) return;
+    const s = document.createElement('script');
+    s.id = 'geo-org-schema';
+    s.type = 'application/ld+json';
+    s.text = JSON.stringify(ORG_SCHEMA);
+    document.head.appendChild(s);
+    return () => s.remove();
+  }, []);
+
+  useEffect(() => {
+    const m = PAGE_META[page] || PAGE_META.home;
     document.title = m.title;
-
     let desc = document.querySelector('meta[name="description"]');
-    if (!desc) {
-      desc = document.createElement('meta');
-      desc.name = 'description';
-      document.head.appendChild(desc);
-    }
+    if (!desc) { desc = document.createElement('meta'); desc.name = 'description'; document.head.appendChild(desc); }
     desc.content = m.desc;
-
     let og = document.querySelector('meta[property="og:title"]');
-    if (!og) {
-      og = document.createElement('meta');
-      og.setAttribute('property', 'og:title');
-      document.head.appendChild(og);
-    }
+    if (!og) { og = document.createElement('meta'); og.setAttribute('property','og:title'); document.head.appendChild(og); }
     og.content = m.title;
-
     let ogd = document.querySelector('meta[property="og:description"]');
-    if (!ogd) {
-      ogd = document.createElement('meta');
-      ogd.setAttribute('property', 'og:description');
-      document.head.appendChild(ogd);
-    }
+    if (!ogd) { ogd = document.createElement('meta'); ogd.setAttribute('property','og:description'); document.head.appendChild(ogd); }
     ogd.content = m.desc;
-
     let canon = document.querySelector('link[rel="canonical"]');
-    if (!canon) {
-      canon = document.createElement('link');
-      canon.rel = 'canonical';
-      document.head.appendChild(canon);
-    }
-    canon.href = `https://haozhagen.com${ROUTE_MAP[currentPage] || '/'}`;
-  }, [currentPage]);
+    if (!canon) { canon = document.createElement('link'); canon.rel = 'canonical'; document.head.appendChild(canon); }
+    canon.href = `https://www.haozhagen.com/#${page}`;
+  }, [page]);
 
   return (
     <>
       <style>{CSS}</style>
       <div className="shell">
-        <NavBar cur={currentPage} nav={nav} />
-        <main>{children}</main>
-        <Footer cur={currentPage} />
+        <NavBar cur={page} nav={nav} />
+        <main>
+          {page==='home'         && <HomePage nav={nav} />}
+          {page==='products'     && <ProductsPage nav={nav} />}
+          {page==='privateLabel' && <PrivateLabelPage nav={nav} />}
+          {page==='cases'        && <CasesPage nav={nav} />}
+          {page==='news'         && <NewsPage />}
+          {page==='about'        && <AboutPage nav={nav} />}
+          {page==='contact'      && <ContactPage />}
+        </main>
+        <Footer cur={page} />
       </div>
     </>
   );
 }
-
-export {
-  HomePage,
-  ProductsPage,
-  PrivateLabelPage,
-  CasesPage,
-  NewsPage,
-  AboutPage,
-  ContactPage,
-};
