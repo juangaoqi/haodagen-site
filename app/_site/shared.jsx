@@ -2113,7 +2113,7 @@ function AboutPage({ nav }) {
 
 function ContactPage() {
   return (<>
-    <PhHero eyebrow="Contact" title="咨询合作" desc="" />
+    <PhHero eyebrow="Contact" title="咨询合作" desc="把客户最关心的信息先收集起来，后续更方便匹配产品方案、供货方式和贴牌合作方向。" />
     <section className="sec"><div className="W">
       <SH n="01" label="Cooperation" title="获取适合你门店的产品方案" />
       <R d={0.08}><div className="con">
