@@ -2114,7 +2114,7 @@ function AboutPage({ nav }) {
 
 function ContactPage() {
   return (<>
-    <PhHero eyebrow="Contact" title="咨询合作" desc="" />
+    <PhHero eyebrow="Contact" title="咨询合作" desc="把客户最关心的信息先收集起来，后续更方便匹配产品方案、供货方式和贴牌合作方向。" />
     <section className="sec"><div className="W">
       <SH n="01" label="Cooperation" title="获取适合你门店的产品方案" />
       <R d={0.08}><div className="con">
@@ -2170,15 +2170,9 @@ export default function App() {
   useEffect(() => {
     const m = PAGE_META[page] || PAGE_META.home;
     document.title = m.title;
-    let desc = document.querySelector('meta[name="description"]');
-    if (!desc) { desc = document.createElement('meta'); desc.name = 'description'; document.head.appendChild(desc); }
-    desc.content = m.desc;
     let og = document.querySelector('meta[property="og:title"]');
     if (!og) { og = document.createElement('meta'); og.setAttribute('property','og:title'); document.head.appendChild(og); }
     og.content = m.title;
-    let ogd = document.querySelector('meta[property="og:description"]');
-    if (!ogd) { ogd = document.createElement('meta'); ogd.setAttribute('property','og:description'); document.head.appendChild(ogd); }
-    ogd.content = m.desc;
     let canon = document.querySelector('link[rel="canonical"]');
     if (!canon) { canon = document.createElement('link'); canon.rel = 'canonical'; document.head.appendChild(canon); }
     canon.href = `https://www.haozhagen.com/#${page}`;
@@ -2238,15 +2232,9 @@ export function SiteFrame({ currentPage, nav, children }) {
   useEffect(() => {
     const m = PAGE_META[currentPage] || PAGE_META.home;
     document.title = m.title;
-    let desc = document.querySelector('meta[name="description"]');
-    if (!desc) { desc = document.createElement('meta'); desc.name = 'description'; document.head.appendChild(desc); }
-    desc.content = m.desc;
     let og = document.querySelector('meta[property="og:title"]');
     if (!og) { og = document.createElement('meta'); og.setAttribute('property','og:title'); document.head.appendChild(og); }
     og.content = m.title;
-    let ogd = document.querySelector('meta[property="og:description"]');
-    if (!ogd) { ogd = document.createElement('meta'); ogd.setAttribute('property','og:description'); document.head.appendChild(ogd); }
-    ogd.content = m.desc;
     let canon = document.querySelector('link[rel="canonical"]');
     if (!canon) { canon = document.createElement('link'); canon.rel = 'canonical'; document.head.appendChild(canon); }
     canon.href = `https://www.haozhagen.com${ROUTE_MAP[currentPage] || '/'}`;
