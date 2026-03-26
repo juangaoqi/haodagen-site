@@ -1,0 +1,10 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "haozhagen.com" }],
+      "destination": "https://www.haozhagen.com/$1",
+      "permanent": true
+    }
+  ]
+}
