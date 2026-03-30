@@ -1814,8 +1814,11 @@ function HomePage({ nav }) {
         <div className="W">
           <SH n="03" label="Customers" title="我们服务哪些客户" desc="主要服务有供货、上新、产品优化和品牌定制需求的餐饮门店客户。" />
           <R d={0.08}><div className="chips">
-            <a href="/bbq" className="chip" style={{ textDecoration:'none', cursor:'pointer' }}>烧烤店 / 烤肉店 →</a>
-            {['西式简餐店','烘焙 / 轻食门店','日式餐饮门店','夜市 / 小吃类门店','连锁餐饮品牌','有定制贴牌需求的品牌客户','希望优化产品结构与采购效率的门店'].map(c => (
+            <a href="/bbq"      className="chip" style={{ textDecoration:'none', cursor:'pointer' }}>烧烤 / 烤肉门店食材方案 →</a>
+            <a href="/western"  className="chip" style={{ textDecoration:'none', cursor:'pointer' }}>西式简餐门店食材方案 →</a>
+            <a href="/japanese" className="chip" style={{ textDecoration:'none', cursor:'pointer' }}>日式餐饮门店食材方案 →</a>
+            <a href="/nightmarket" className="chip" style={{ textDecoration:'none', cursor:'pointer' }}>夜市 / 小吃门店食材方案 →</a>
+            {['烘焙 / 轻食门店食材方案','连锁餐饮品牌食材方案','定制贴牌门店食材方案','产品结构优化门店食材方案'].map(c => (
               <div className="chip" key={c}>{c}</div>
             ))}
           </div></R>
