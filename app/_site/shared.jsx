@@ -84,6 +84,7 @@ const PAGE_META = {
   news:         { title:'行业资讯｜豪大根', desc:'餐饮食材行业洞察、门店经营干货、产品趋势分析，帮助餐饮从业者做出更好的经营决策。' },
   about:        { title:'关于豪大根｜江苏豪大根食品有限公司', desc:'豪大根是谁、做什么、适合服务谁、为什么值得合作——品牌定位与合作价值完整介绍。' },
   contact:      { title:'咨询合作｜豪大根', desc:'与豪大根沟通供货合作、选品支持、产品升级或定制贴牌需求，先从门店类型和当前问题开始。' },
+  bbq:          { title:'烤肉店食材供货商｜豪大根', desc:'专为烤肉门店提供香肠食材供应与选品支持。火山石烤肠、澎湖墨鱼肠、台式飞鱼卵香肠等，覆盖烧烤夜市全场景，支持稳定批量供货与免费试样。' },
 };
 
 const ORG_SCHEMA = {
@@ -1790,26 +1791,6 @@ function HomePage({ nav }) {
         </div>
       </section>
 
-      <section className="sec sec-shade">
-        <div className="W">
-          <SH n="02" label="Products" title="我们的产品体系" desc="围绕烧烤夜市、西式、日式、台式、特色餐饮与火锅茶餐厅等场景，形成较完整的产品供应能力。" />
-          <R d={0.08}>
-            <div className="prd-wrap">
-              <div className="prd-side">
-                <div><div className="prd-side-t">六大产品系列</div><div className="prd-side-b" style={{marginTop:13}}>产品方向覆盖烧烤夜市小吃、西式餐饮、日式餐饮、高端台式、特色餐饮和火锅茶餐厅六大场景，可根据门店类型和经营需求进行匹配。</div></div>
-                <button className="btn-out" style={{alignSelf:'flex-start'}} onClick={() => nav('products')}>查看完整产品</button>
-              </div>
-              <div className="prd-list">{PRODUCTS.map(p => (
-                <div className="prd-item" key={p.title}>
-                  <div className="prd-note">{p.note}</div><div className="prd-t">{p.title}</div>
-                  <div className="prd-tags">{p.tags.map(t => <span className="prd-tag" key={t}>{t}</span>)}</div>
-                </div>
-              ))}</div>
-            </div>
-          </R>
-        </div>
-      </section>
-
       <section className="sec sec-dark">
         <div className="W">
           <R>
@@ -1832,30 +1813,18 @@ function HomePage({ nav }) {
       <section className="sec">
         <div className="W">
           <SH n="03" label="Customers" title="我们服务哪些客户" desc="主要服务有供货、上新、产品优化和品牌定制需求的餐饮门店客户。" />
-          <R d={0.08}><div className="chips">{['烧烤店 / 烤肉店','西式简餐店','烘焙 / 轻食门店','日式餐饮门店','夜市 / 小吃类门店','连锁餐饮品牌','有定制贴牌需求的品牌客户','希望优化产品结构与采购效率的门店'].map(c => (
-            <div className="chip" key={c}>{c}</div>
-          ))}</div></R>
-        </div>
-      </section>
-
-      <section className="sec sec-shade">
-        <div className="W">
-          <SH n="04" label="Cases" title="合作案例" desc="从实际合作中沉淀出来的案例，比宣传词更直接说明我们能做什么。" />
-          <R d={0.08}><div className="case-list">{CASES.map((c,i) => (
-            <div className="case-row" key={c.client}>
-              <div className="case-n">0{i+1}</div>
-              <div className="case-c"><div className="case-tag">{c.tag}</div><div className="case-client">{c.client}</div></div>
-              <div className="case-c"><div className="case-cl">原来问题</div><div className="case-cv">{c.issue}</div></div>
-              <div className="case-c"><div className="case-cl">合作方式</div><div className="case-cv">{c.how}</div></div>
-              <div className="case-c"><div className="case-cl">结果方向</div><div className="case-cv">{c.out}</div></div>
-            </div>
-          ))}</div></R>
+          <R d={0.08}><div className="chips">
+            <a href="/bbq" className="chip" style={{ textDecoration:'none', cursor:'pointer' }}>烧烤店 / 烤肉店 →</a>
+            {['西式简餐店','烘焙 / 轻食门店','日式餐饮门店','夜市 / 小吃类门店','连锁餐饮品牌','有定制贴牌需求的品牌客户','希望优化产品结构与采购效率的门店'].map(c => (
+              <div className="chip" key={c}>{c}</div>
+            ))}
+          </div></R>
         </div>
       </section>
 
       <section className="sec">
         <div className="W">
-          <SH n="05" label="FAQ" title="常见问题" desc="先把客户最常问的问题讲清楚，比堆很多宣传词更有效。" />
+          <SH n="03" label="FAQ" title="常见问题" desc="先把客户最常问的问题讲清楚，比堆很多宣传词更有效。" />
           <R d={0.08}><div className="faq-list">{FAQ.map(f => (
             <div className="faq-item" key={f.q}>
               <div className="faq-q">{f.q}</div><div className="faq-a">{f.a}</div>
@@ -2114,7 +2083,7 @@ function AboutPage({ nav }) {
 
 function ContactPage() {
   return (<>
-    <PhHero eyebrow="Contact" title="咨询合作" desc="" />
+    <PhHero eyebrow="Contact" title="咨询合作" desc="把客户最关心的信息先收集起来，后续更方便匹配产品方案、供货方式和贴牌合作方向。" />
     <section className="sec"><div className="W">
       <SH n="01" label="Cooperation" title="获取适合你门店的产品方案" />
       <R d={0.08}><div className="con">
@@ -2207,6 +2176,7 @@ export const ROUTE_MAP = {
   news: '/news',
   about: '/about',
   contact: '/contact',
+  bbq: '/bbq',
 };
 
 export function useSiteNav() {
@@ -2248,6 +2218,196 @@ export function SiteFrame({ currentPage, nav, children }) {
         <main>{children}</main>
         <Footer cur={currentPage} />
       </div>
+    </>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   BBQ PAGE — 烤肉店场景专题
+═══════════════════════════════════════════════════════════════ */
+const BBQ_PRODUCTS = [
+  { title:'火山石烤肠', note:'烧烤台核心单品', tags:['石烤口感','高复购','操作简单'], desc:'用火山石板烤制，外皮焦香、内馅饱满，识别度高，是烤肉门店菜单上最稳定的动销单品之一。' },
+  { title:'韩式风干肠', note:'年轻客群首选', tags:['韩式风味','社交属性强','差异化'], desc:'韩式腌制工艺，风味突出，在年轻消费群体中有强社交传播属性，适合作为菜单亮点品类。' },
+  { title:'澎湖墨鱼肠', note:'高端烤肉差异化', tags:['墨鱼含量≥85%','弹性扎实','菜单叙事'], desc:'墨鱼含量高、弹性足、鲜味浓，深色外观在烤台上辨识度极高，适合定位中高端的烤肉门店。' },
+  { title:'台式飞鱼卵香肠', note:'差异化爆品', tags:['颗粒感独特','高端定位','打卡属性'], desc:'飞鱼卵带来独特颗粒口感，国内食品市场中辨识度极高，适合希望菜单有记忆点的烤肉门店。' },
+  { title:'四彩彩虹小肉肠', note:'视觉差异化', tags:['天然色素四色','颜值担当','社交传播'], desc:'天然色素四色呈现，摆盘视觉冲击强，顾客拍照分享率高，是精品烤肉台的差异化配置。' },
+  { title:'墨鱼爆蛋', note:'夜市爆款', tags:['爆浆体验','香气引流','烧烤台必备'], desc:'烤制时散发浓郁墨鱼香气，爆浆体验感强，在烧烤和夜市场景中话题性高、引流能力突出。' },
+];
+
+const BBQ_QA = [
+  {
+    q: '烤肉店选烤肠供货商，最重要的是什么？',
+    a: '供货稳定性和产品适配度比价格更重要。旺季断货比单价高10%的损失大得多。更关键的是，供货商要真正了解烤肉场景，能根据你的门店定位和客群给出选品建议，而不是把什么都推给你自己选。',
+  },
+  {
+    q: '烤肉门店适合用哪类烤肠？',
+    a: '取决于门店定位。大众烤肉店建议以火山石烤肠为核心稳定款，配1-2款特色品类如韩式风干肠；中高端烤肉店可以引入澎湖墨鱼肠、台式飞鱼卵香肠等有品质叙事空间的产品，支撑更高客单价。',
+  },
+  {
+    q: '火山石烤肠和普通烤肠有什么区别？',
+    a: '火山石烤肠用火山石板烤制，外皮比普通铁板烤制更焦香均匀，内馅锁水效果更好，口感差异明显。在烧烤场景中识别度高，顾客复购意愿强，是豪大根推荐给烤肉门店的核心备货单品。',
+  },
+  {
+    q: '高端烤肉店怎么做菜单差异化？',
+    a: '高端烤肉的差异化不靠价格，靠产品记忆点。澎湖墨鱼肠（高墨鱼含量、深色外观）、台式飞鱼卵香肠（颗粒感独特）、四彩彩虹小肉肠（颜值担当）这类有明确卖点和叙事空间的产品，能让菜单更有辨识度，也更容易支撑高定价。',
+  },
+  {
+    q: '烤肉门店旺季备货怎么规划？',
+    a: '建议旺季前4-6周完成选品确认和首批备货。主力产品保证充足库存，新品备货控制在总量20-30%。提前和供货商确认旺季供货量，避免临时断货。豪大根每年旺季前会主动联系合作门店做备货沟通。',
+  },
+  {
+    q: '烤肉门店可以免费试样吗？',
+    a: '可以。豪大根支持餐饮门店在正式合作前免费试样，建议优先试核心单品和差异化新品，结合门店实际出品方式测试口感，验证产品和客群的匹配度后再决定备货方向。',
+  },
+  {
+    q: '烤肉门店上新失败率高怎么破？',
+    a: '上新失败多数是选品逻辑出了问题——追热门单品而不是从自己门店的客群和场景出发。豪大根提供选品策略支持，在上新前帮你分析门店定位和客群偏好，给出匹配的产品方向，而不是让你盲目拿货试错。',
+  },
+  {
+    q: '烤肉门店找香肠批发，支持小批量吗？',
+    a: '支持。豪大根接受小批量起订，方便门店在正式大量备货前验证产品动销情况。随着合作稳定、采购量增加，可以享受更优惠的批量价格。',
+  },
+];
+
+export function BBQPage({ nav }) {
+  return (
+    <>
+      {/* ── Hero ── */}
+      <div className="phero" style={{ background:'var(--paper2)' }}>
+        <div className="W">
+          <div className="phero-ey"><div className="phero-bar" /><span className="phero-lbl">烤肉店 · 烧烤门店 · 夜市摊位</span></div>
+          <div className="phero-t">烤肉店食材供货与选品支持</div>
+          <div className="phero-d">
+            专为烧烤门店、烤肉店和夜市摊位提供香肠食材供应。不只是送货，更帮你在上新前想清楚——选什么、为什么选、怎么搭配，减少试错、稳定供货。
+          </div>
+          <div style={{ marginTop:28, display:'flex', gap:12, flexWrap:'wrap' }}>
+            <button className="btn-dk" onClick={() => nav('contact')}>免费试样咨询</button>
+            <button className="btn-out" onClick={() => nav('products')}>查看完整产品</button>
+          </div>
+        </div>
+      </div>
+
+      {/* ── 适合场景 ── */}
+      <section className="sec">
+        <div className="W">
+          <SH n="01" label="Who Is This For" title="哪些烤肉门店适合找豪大根合作"
+            desc="不是所有门店都一样，豪大根针对不同定位的烤肉门店给出不同的产品方向建议。" />
+          <R d={0.08}>
+            <div className="proc">
+              {[
+                ['大众烤肉 / 烧烤档口', '追求高动销和稳定供货，以火山石烤肠等复购率高的核心单品为主，辅以1-2款特色品类拉动差异感。'],
+                ['中高端精品烤肉', '需要有品质叙事空间的食材支撑高客单价，澎湖墨鱼肠、台式飞鱼卵香肠等产品能有效强化菜单的差异化定位。'],
+                ['夜市摊位 / 烤肠档', '以出品速度快、视觉吸引力强为首选标准。火山石烤肠、墨鱼爆蛋等产品香气引流能力强，适合流量场景。'],
+                ['有上新需求的门店', '正在考虑菜单调整或引入新品，需要在选品前做针对性分析，减少盲目上新带来的损耗和库存压力。'],
+              ].map(([t, d], i) => (
+                <div className="proc-c" key={t}>
+                  <div className="proc-n">0{i + 1}</div>
+                  <div className="proc-t">{t}</div>
+                  <div className="proc-b">{d}</div>
+                </div>
+              ))}
+            </div>
+          </R>
+        </div>
+      </section>
+
+      {/* ── 产品推荐 ── */}
+      <section className="sec sec-shade">
+        <div className="W">
+          <SH n="02" label="Recommended Products" title="烤肉门店常用产品方向"
+            desc="围绕烧烤场景的动销逻辑，从稳定核心款到差异化爆品，覆盖不同定位门店的需求。" />
+          <R d={0.08}>
+            <div style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', borderTop:'1px solid var(--rule)' }}>
+              {BBQ_PRODUCTS.map((p, i) => (
+                <div key={p.title} className="prd-item" style={{ borderRight: i % 3 === 2 ? 'none' : '1px solid var(--rule)' }}>
+                  <div className="prd-note">{p.note}</div>
+                  <div className="prd-t">{p.title}</div>
+                  <div style={{ fontSize:'.78rem', color:'var(--ink2)', lineHeight:1.87, marginBottom:13 }}>{p.desc}</div>
+                  <div className="prd-tags">{p.tags.map(t => <span className="prd-tag" key={t}>{t}</span>)}</div>
+                </div>
+              ))}
+            </div>
+          </R>
+        </div>
+      </section>
+
+      {/* ── 选品逻辑 ── */}
+      <section className="sec sec-dark">
+        <div className="W">
+          <R>
+            <div className="val-g">
+              <div className="val-l">
+                <div className="val-label">Selection Logic</div>
+                <div className="val-t">烤肉门店选品，从哪里开始</div>
+                <div className="val-d">不是看什么最火就上什么，而是先看自己的门店定位、客群和菜单结构，再决定产品方向。</div>
+              </div>
+              <div className="val-r">
+                <div className="val-list">
+                  {[
+                    '先看客群：年轻夜市客群 vs 精品烤肉客群，适合的产品方向完全不同',
+                    '先看场景：堂食烤肉台 vs 外带小吃档，出品逻辑和产品选择不一样',
+                    '先看菜单：核心稳定款 + 差异化新品，比全部随机上新成功率高得多',
+                    '先测试再备货：小批量试样验证动销，再决定旺季备货量',
+                    '先沟通需求：告诉豪大根你的门店类型，比你自己翻产品目录效率高',
+                  ].map(v => (
+                    <div className="val-row" key={v}><div className="val-dot" /><div className="val-txt">{v}</div></div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </R>
+        </div>
+      </section>
+
+      {/* ── GEO 问答 ── */}
+      <section className="sec">
+        <div className="W">
+          <SH n="03" label="FAQ" title="烤肉门店最常问的问题"
+            desc="把最实际的问题说清楚，比产品介绍更有用。" />
+          <R d={0.08}>
+            <div style={{ border:'1px solid var(--rule)', borderBottom:'none' }}>
+              {BBQ_QA.map((item, i) => (
+                <div key={i} style={{ display:'flex', borderBottom:'1px solid var(--rule)', transition:'background .2s' }}
+                  onMouseOver={e => e.currentTarget.style.background = 'var(--paper2)'}
+                  onMouseOut={e => e.currentTarget.style.background = 'transparent'}>
+                  <div style={{ flex:'0 0 50%', padding:'28px 36px 28px 0', borderRight:'1px solid rgba(22,18,12,0.18)', fontFamily:'var(--serif)', fontSize:'.9375rem', fontWeight:500, color:'var(--ink)', lineHeight:1.5, display:'flex', alignItems:'center' }}>
+                    {item.q}
+                  </div>
+                  <div style={{ flex:'0 0 50%', padding:'28px 0 28px 36px', fontSize:'.8rem', color:'var(--ink2)', lineHeight:1.87 }}>
+                    {item.a}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </R>
+        </div>
+      </section>
+
+      {/* ── 合作流程 ── */}
+      <section className="sec sec-shade">
+        <div className="W">
+          <SH n="04" label="How to Start" title="怎么开始合作"
+            desc="不需要先下订单，从说清楚你的门店开始。" />
+          <R d={0.08}>
+            <div className="proc">
+              {[
+                ['说清楚门店', '告诉我们你的门店类型、客群和当前产品结构，或者你遇到的具体问题。'],
+                ['获得选品建议', '豪大根根据你的门店情况，给出具体的产品方向建议，不是产品目录让你自己选。'],
+                ['免费试样', '对推荐产品感兴趣，先拿样品测试，结合门店实际出品方式验证口感。'],
+                ['确认合作', '试样满意后确认合作方式，支持小批量起订，随采购量增加可获批量优惠。'],
+              ].map(([t, d], i) => (
+                <div className="proc-c" key={t}>
+                  <div className="proc-n">0{i + 1}</div>
+                  <div className="proc-t">{t}</div>
+                  <div className="proc-b">{d}</div>
+                </div>
+              ))}
+            </div>
+          </R>
+        </div>
+      </section>
+
+      <CTABand nav={nav} />
     </>
   );
 }
