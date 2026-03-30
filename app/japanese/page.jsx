@@ -10,36 +10,42 @@ const JP_PRODUCTS = [
     note: '海洋鲜味 · 日式核心',
     tags: ['海藻风味', '清爽鲜味', '日式调性强'],
     desc: '海藻与墨鱼的组合带来清爽海洋鲜味，和日式菜单的整体调性高度匹配。是日式门店菜单中辨识度最强的肠类单品之一。',
+    img: null,
   },
   {
     title: '日式小红肠',
     note: '经典款 · 高复购',
     tags: ['日式风味', '操作简单', '复购稳定'],
     desc: '日式风味小红肠，外观精致、规格统一，出品操作简单。适合作为日式门店菜单的基础款，动销稳定、复购率高。',
+    img: '/images/products/rishi-xiaohongchang.JPG',
   },
   {
     title: '日式炸付香肠',
     note: '炸物场景 · 出品快',
     tags: ['适合油炸', '出品效率高', '口感酥脆'],
     desc: '专为日式炸物场景设计，油炸后外皮酥脆、内馅饱满，出品效率高。适合有炸物套餐的日式餐厅和定食场景。',
+    img: null,
   },
   {
     title: '澎湖墨鱼肠',
     note: '高端差异化 · 品质感',
     tags: ['墨鱼含量≥85%', '弹性扎实', '差异化强'],
     desc: '高墨鱼含量带来扎实弹性和浓郁鲜味，适合定位偏高端的日式料理门店。深黑色外观在出品盘中视觉辨识度极高。',
+    img: '/images/products/penghu-moyuchang.jpg',
   },
   {
     title: '墨鱼爆蛋',
     note: '话题单品 · 爆浆体验',
     tags: ['爆浆效果', '墨鱼香气', '社交属性'],
     desc: '爆浆的独特体验和浓郁的墨鱼香气，在日式居酒屋和烧烤场景中有较强话题性。适合作为菜单新鲜感补充，带动顾客分享传播。',
+    img: '/images/products/moyubaodan.jpg',
   },
   {
     title: '深海章鱼肠',
     note: '海鲜系列 · 风味独特',
     tags: ['章鱼鲜味', '口感弹韧', '海鲜系列'],
     desc: '章鱼特有的鲜味和弹韧口感，适合日式门店的海鲜食材系列补充。和海藻墨鱼肠搭配，可丰富菜单的海洋风味层次。',
+    img: null,
   },
 ];
 
@@ -157,11 +163,22 @@ export default function JapanesePage() {
           <div style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', borderTop:'1px solid var(--rule)' }} className="jp-prd-grid">
             {JP_PRODUCTS.map((p, i) => (
               <div key={p.title} className="prd-item"
-                style={{ borderRight: i % 3 !== 2 ? '1px solid var(--rule)' : 'none' }}>
-                <div className="prd-note">{p.note}</div>
-                <div className="prd-t">{p.title}</div>
-                <div style={{ fontSize:'.78rem', color:'var(--ink2)', lineHeight:1.87, marginBottom:12 }}>{p.desc}</div>
-                <div className="prd-tags">{p.tags.map(t => <span className="prd-tag" key={t}>{t}</span>)}</div>
+                style={{ borderRight: i % 3 !== 2 ? '1px solid var(--rule)' : 'none', padding:0, overflow:'hidden' }}>
+                {p.img && (
+                  <div style={{ width:'100%', aspectRatio:'4/3', overflow:'hidden', borderBottom:'1px solid var(--rule)' }}>
+                    <img src={p.img} alt={p.title}
+                      style={{ width:'100%', height:'100%', objectFit:'cover', display:'block', transition:'transform .4s ease' }}
+                      onMouseOver={e => e.currentTarget.style.transform='scale(1.04)'}
+                      onMouseOut={e => e.currentTarget.style.transform='scale(1)'}
+                    />
+                  </div>
+                )}
+                <div style={{ padding:'24px 26px 28px' }}>
+                  <div className="prd-note">{p.note}</div>
+                  <div className="prd-t">{p.title}</div>
+                  <div style={{ fontSize:'.78rem', color:'var(--ink2)', lineHeight:1.87, marginBottom:12 }}>{p.desc}</div>
+                  <div className="prd-tags">{p.tags.map(t => <span className="prd-tag" key={t}>{t}</span>)}</div>
+                </div>
               </div>
             ))}
           </div>
