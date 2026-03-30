@@ -10,36 +10,42 @@ const BBQ_PRODUCTS = [
     note: '核心爆品 · 高复购',
     tags: ['石烤口感', '操作简单', '动销稳定'],
     desc: '烧烤门店最稳定的复购单品之一。石烤工艺带来独特焦香口感，出品操作简单，旺季不断货，是烤肉门店菜单的核心备货方向。',
+    img: '/images/products/huoshankao.jpg',
   },
   {
     title: '澎湖墨鱼肠',
     note: '高端差异化 · 品质感强',
     tags: ['墨鱼含量≥85%', '弹性足', '视觉辨识度高'],
     desc: '适合定位偏高端的烤肉餐厅。深黑色外观在烤台上辨识度极高，墨鱼含量高、口感扎实，能有效支撑高客单价菜单。',
+    img: '/images/products/penghu-moyuchang.jpg',
   },
   {
     title: '台式飞鱼卵香肠',
     note: '差异化卖点 · 打卡属性强',
     tags: ['飞鱼卵颗粒感', '台式风味', '社交传播'],
     desc: '颗粒状飞鱼卵带来独特口感体验，在国内市场辨识度高。适合希望打造差异化菜单记忆点、提升客单价的烤肉门店。',
+    img: '/images/products/feiyuzi.jpg',
   },
   {
     title: '韩式风干肠',
     note: '年轻客群 · 社交属性',
     tags: ['韩式风味', '年轻客群', '复购率高'],
     desc: '在年轻消费群体中接受度高，有较强的社交分享属性。适合面向年轻客群的烤肉店，作为菜单亮点品类搭配使用。',
+    img: '/images/products/hansifenggan.jpg',
   },
   {
     title: '四彩彩虹小肉肠',
     note: '颜值担当 · 精品场景',
     tags: ['天然色素四色', '精致感', '出片率高'],
     desc: '每根约10g的小巧规格，四色呈现视觉冲击力强。适合高端烤肉餐厅作为特色单品，顾客自发拍照分享率高。',
+    img: '/images/products/sicai-xiaorouchang.JPG',
   },
   {
     title: '墨鱼爆蛋',
     note: '爆浆体验 · 话题单品',
     tags: ['爆浆效果稳定', '香气显著', '话题性强'],
     desc: '咬下去爆浆的独特体验，烤制时墨鱼香气扑鼻，天然吸引路过顾客驻足。适合作为菜单话题单品，带动整体客流。',
+    img: '/images/products/moyubaodan.jpg',
   },
 ];
 
@@ -163,11 +169,22 @@ export default function BbqPage() {
             className="bbq-prd-grid">
             {BBQ_PRODUCTS.map((p, i) => (
               <div key={p.title} className="prd-item"
-                style={{ borderRight: i % 3 !== 2 ? '1px solid var(--rule)' : 'none' }}>
-                <div className="prd-note">{p.note}</div>
-                <div className="prd-t">{p.title}</div>
-                <div style={{ fontSize:'.78rem', color:'var(--ink2)', lineHeight:1.87, marginBottom:12 }}>{p.desc}</div>
-                <div className="prd-tags">{p.tags.map(t => <span className="prd-tag" key={t}>{t}</span>)}</div>
+                style={{ borderRight: i % 3 !== 2 ? '1px solid var(--rule)' : 'none', padding:0, overflow:'hidden' }}>
+                {p.img && (
+                  <div style={{ width:'100%', aspectRatio:'4/3', overflow:'hidden', borderBottom:'1px solid var(--rule)' }}>
+                    <img src={p.img} alt={p.title}
+                      style={{ width:'100%', height:'100%', objectFit:'cover', display:'block', transition:'transform .4s ease' }}
+                      onMouseOver={e => e.currentTarget.style.transform='scale(1.04)'}
+                      onMouseOut={e => e.currentTarget.style.transform='scale(1)'}
+                    />
+                  </div>
+                )}
+                <div style={{ padding:'24px 26px 28px' }}>
+                  <div className="prd-note">{p.note}</div>
+                  <div className="prd-t">{p.title}</div>
+                  <div style={{ fontSize:'.78rem', color:'var(--ink2)', lineHeight:1.87, marginBottom:12 }}>{p.desc}</div>
+                  <div className="prd-tags">{p.tags.map(t => <span className="prd-tag" key={t}>{t}</span>)}</div>
+                </div>
               </div>
             ))}
           </div>
