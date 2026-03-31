@@ -11,7 +11,7 @@ const BBQ_PRODUCTS = [
     tags: ['墨鱼含量≥85%', '弹性足', '视觉辨识度高'],
     desc: '适合定位偏高端的烤肉餐厅。深黑色外观在烤台上辨识度极高，墨鱼含量高、口感扎实，能有效支撑高客单价菜单。',
     img: '/images/products/penghu-moyuchang.jpg',
-    pos: 'center 40%',
+    pos: 'center center',
   },
   {
     title: '韩式风干肠',
@@ -35,7 +35,7 @@ const BBQ_PRODUCTS = [
     tags: ['拉丝效果', '视觉冲击', '年轻客群'],
     desc: '烤制后拉丝效果显著，视觉冲击力强，在社交媒体上传播属性极强。适合烤肉门店作为话题单品，带动顾客自发拍照分享。',
     img: '/images/products/zhishitiao.jpg',
-    pos: 'center 30%',
+    pos: 'center center',
   },
   {
     title: '棕香肉肠',
