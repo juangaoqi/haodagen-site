@@ -6,25 +6,11 @@ import { SiteFrame, useSiteNav } from '../_site/shared';
 
 const BBQ_PRODUCTS = [
   {
-    title: '火山石烤肠',
-    note: '核心爆品 · 高复购',
-    tags: ['石烤口感', '操作简单', '动销稳定'],
-    desc: '烧烤门店最稳定的复购单品之一。石烤工艺带来独特焦香口感，出品操作简单，旺季不断货，是烤肉门店菜单的核心备货方向。',
-    img: '/images/products/huoshankao.jpg',
-  },
-  {
     title: '澎湖墨鱼肠',
     note: '高端差异化 · 品质感强',
     tags: ['墨鱼含量≥85%', '弹性足', '视觉辨识度高'],
     desc: '适合定位偏高端的烤肉餐厅。深黑色外观在烤台上辨识度极高，墨鱼含量高、口感扎实，能有效支撑高客单价菜单。',
     img: '/images/products/penghu-moyuchang.jpg',
-  },
-  {
-    title: '台式飞鱼卵香肠',
-    note: '差异化卖点 · 打卡属性强',
-    tags: ['飞鱼卵颗粒感', '台式风味', '社交传播'],
-    desc: '颗粒状飞鱼卵带来独特口感体验，在国内市场辨识度高。适合希望打造差异化菜单记忆点、提升客单价的烤肉门店。',
-    img: '/images/products/feiyuzi.jpg',
   },
   {
     title: '韩式风干肠',
@@ -41,11 +27,25 @@ const BBQ_PRODUCTS = [
     img: '/images/products/sicai-xiaorouchang.JPG',
   },
   {
-    title: '墨鱼爆蛋',
-    note: '爆浆体验 · 话题单品',
-    tags: ['爆浆效果稳定', '香气显著', '话题性强'],
-    desc: '咬下去爆浆的独特体验，烤制时墨鱼香气扑鼻，天然吸引路过顾客驻足。适合作为菜单话题单品，带动整体客流。',
-    img: '/images/products/moyubaodan.jpg',
+    title: '烤芝士',
+    note: '网红单品 · 拉丝效果',
+    tags: ['拉丝效果', '视觉冲击', '年轻客群'],
+    desc: '烤制后拉丝效果显著，视觉冲击力强，在社交媒体上传播属性极强。适合烤肉门店作为话题单品，带动顾客自发拍照分享。',
+    img: '/images/products/zhishitiao.jpg',
+  },
+  {
+    title: '棕香肉肠',
+    note: '特色风味 · 差异化',
+    tags: ['棕香风味', '差异化卖点', '动销稳定'],
+    desc: '棕香与肉肠的独特结合，风味辨识度高，适合希望在菜单上建立特色记忆点的烤肉门店，是差异化选品的有效补充。',
+    img: '/images/products/zongxiangrouchang.JPG',
+  },
+  {
+    title: '小爆肠',
+    note: '一口一个 · 高复购',
+    tags: ['小巧规格', '一口一个', '复购率高'],
+    desc: '小巧规格方便食用，一口一个的体验感强，适合烤肉场景的快节奏消费。作为搭配款上桌，能有效提升桌台整体点单量。',
+    img: '/images/products/xiaobaochang.jpg',
   },
 ];
 
