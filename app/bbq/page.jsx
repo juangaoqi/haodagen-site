@@ -11,8 +11,7 @@ const BBQ_PRODUCTS = [
     tags: ['墨鱼含量≥85%', '弹性足', '视觉辨识度高'],
     desc: '适合定位偏高端的烤肉餐厅。深黑色外观在烤台上辨识度极高，墨鱼含量高、口感扎实，能有效支撑高客单价菜单。',
     img: '/images/products/penghu-moyuchang.jpg',
-    pos: 'center 20%',
-    scale: '0.85',
+    pos: 'center 40%',
   },
   {
     title: '韩式风干肠',
@@ -20,8 +19,7 @@ const BBQ_PRODUCTS = [
     tags: ['韩式风味', '年轻客群', '复购率高'],
     desc: '在年轻消费群体中接受度高，有较强的社交分享属性。适合面向年轻客群的烤肉店，作为菜单亮点品类搭配使用。',
     img: '/images/products/hansifenggan.jpg',
-    pos: 'right center',
-    scale: '0.85',
+    pos: 'center center',
   },
   {
     title: '四彩彩虹小肉肠',
@@ -30,7 +28,6 @@ const BBQ_PRODUCTS = [
     desc: '每根约10g的小巧规格，四色呈现视觉冲击力强。适合高端烤肉餐厅作为特色单品，顾客自发拍照分享率高。',
     img: '/images/products/sicai-xiaorouchang.JPG',
     pos: 'center center',
-    scale: '1',
   },
   {
     title: '烤芝士',
@@ -38,8 +35,7 @@ const BBQ_PRODUCTS = [
     tags: ['拉丝效果', '视觉冲击', '年轻客群'],
     desc: '烤制后拉丝效果显著，视觉冲击力强，在社交媒体上传播属性极强。适合烤肉门店作为话题单品，带动顾客自发拍照分享。',
     img: '/images/products/zhishitiao.jpg',
-    pos: 'center 20%',
-    scale: '0.85',
+    pos: 'center 30%',
   },
   {
     title: '棕香肉肠',
@@ -48,7 +44,6 @@ const BBQ_PRODUCTS = [
     desc: '棕香与肉肠的独特结合，风味辨识度高，适合希望在菜单上建立特色记忆点的烤肉门店，是差异化选品的有效补充。',
     img: '/images/products/zongxiangrouchang.JPG',
     pos: 'center center',
-    scale: '1',
   },
   {
     title: '小爆肠',
@@ -57,7 +52,6 @@ const BBQ_PRODUCTS = [
     desc: '小巧规格方便食用，一口一个的体验感强，适合烤肉场景的快节奏消费。作为搭配款上桌，能有效提升桌台整体点单量。',
     img: '/images/products/xiaobaochang.JPG',
     pos: 'center center',
-    scale: '1',
   },
 ];
 
@@ -189,13 +183,12 @@ export default function BbqPage() {
                         width:'100%', height:'100%',
                         objectFit:'cover',
                         objectPosition: p.pos || 'center center',
-                        transform: `scale(${p.scale || 1})`,
                         display:'block',
                         transition:'transform .4s ease',
                         imageOrientation:'from-image',
                       }}
-                      onMouseOver={e => e.currentTarget.style.transform=`scale(${(parseFloat(p.scale||1)+0.04).toFixed(2)})`}
-                      onMouseOut={e => e.currentTarget.style.transform=`scale(${p.scale||1})`}
+                      onMouseOver={e => e.currentTarget.style.transform='scale(1.04)'}
+                      onMouseOut={e => e.currentTarget.style.transform='scale(1)'}
                     />
                   </div>
                 )}
