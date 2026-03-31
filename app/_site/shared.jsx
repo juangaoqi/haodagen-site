@@ -1813,15 +1813,43 @@ function HomePage({ nav }) {
       <section className="sec">
         <div className="W">
           <SH n="03" label="Customers" title="我们服务哪些客户" desc="主要服务有供货、上新、产品优化和品牌定制需求的餐饮门店客户。" />
-          <R d={0.08}><div className="chips">
-            <a href="/bbq"      className="chip" style={{ textDecoration:'none', cursor:'pointer' }}>烧烤 / 烤肉门店食材方案 →</a>
-            <a href="/western"  className="chip" style={{ textDecoration:'none', cursor:'pointer' }}>西式简餐门店食材方案 →</a>
-            <a href="/japanese" className="chip" style={{ textDecoration:'none', cursor:'pointer' }}>日式餐饮门店食材方案 →</a>
-            <a href="/nightmarket" className="chip" style={{ textDecoration:'none', cursor:'pointer' }}>夜市 / 小吃门店食材方案 →</a>
-            {['烘焙 / 轻食门店食材方案','连锁餐饮品牌食材方案','定制贴牌门店食材方案','产品结构优化门店食材方案'].map(c => (
-              <div className="chip" key={c}>{c}</div>
-            ))}
-          </div></R>
+          <R d={0.08}>
+            <div style={{ display:'grid', gridTemplateColumns:'repeat(4,1fr)', gap:1, background:'var(--rule)', border:'1px solid var(--rule)', marginTop:38 }} className="scene-grid">
+              {[
+                { href:'/bbq',         label:'烧烤 / 烤肉门店', sub:'食材选品与供货方案', linked:true },
+                { href:'/western',     label:'西式简餐门店',     sub:'德式香肠系列食材方案', linked:true },
+                { href:'/japanese',    label:'日式餐饮门店',     sub:'清爽海洋鲜味系列方案', linked:true },
+                { href:'/nightmarket', label:'夜市 / 小吃门店',  sub:'高动销爆品食材方案', linked:true },
+                { href:null,           label:'烘焙 / 轻食门店',  sub:'健康轻食场景食材方案', linked:false },
+                { href:null,           label:'连锁餐饮品牌',     sub:'标准化供货与定制贴牌', linked:false },
+                { href:null,           label:'定制贴牌门店',     sub:'品牌化产品定制合作', linked:false },
+                { href:null,           label:'火锅 / 茶餐厅',    sub:'多品类稳定供货方案', linked:false },
+              ].map(({ href, label, sub, linked }) => {
+                const inner = (
+                  <div style={{
+                    background:'var(--paper)', padding:'28px 26px 30px',
+                    transition:'background .22s',
+                    display:'flex', flexDirection:'column', gap:8,
+                    cursor: linked ? 'pointer' : 'default',
+                  }}
+                    onMouseOver={e => e.currentTarget.style.background='var(--paper2)'}
+                    onMouseOut={e => e.currentTarget.style.background='var(--paper)'}
+                  >
+                    {linked && <div style={{ fontSize:'.58rem', letterSpacing:'.22em', color:'var(--amber)', textTransform:'uppercase', marginBottom:2 }}>查看方案 →</div>}
+                    <div style={{ fontFamily:'var(--serif)', fontSize:'1rem', fontWeight:500, color:'var(--ink)', lineHeight:1.35 }}>{label}</div>
+                    <div style={{ fontSize:'.72rem', color:'var(--ink3)', lineHeight:1.6 }}>{sub}</div>
+                  </div>
+                );
+                return linked
+                  ? <a key={label} href={href} style={{ textDecoration:'none' }}>{inner}</a>
+                  : <div key={label}>{inner}</div>;
+              })}
+            </div>
+            <style>{`
+              @media(max-width:960px){.scene-grid{grid-template-columns:repeat(2,1fr)!important}}
+              @media(max-width:480px){.scene-grid{grid-template-columns:1fr!important}}
+            `}</style>
+          </R>
         </div>
       </section>
 
