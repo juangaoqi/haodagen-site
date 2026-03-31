@@ -99,26 +99,6 @@ const ORG_SCHEMA = {
       url: 'https://www.haozhagen.com',
       foundingLocation: { '@type': 'Place', name: '江苏' },
       knowsAbout: ['餐饮食材供应', '烤肠', '香肠', '定制贴牌', '选品策略', '降本增效', '餐饮供应链'],
-      hasOfferCatalog: {
-        '@type': 'OfferCatalog',
-        name: '豪大根产品体系',
-        itemListElement: [
-          { '@type': 'Offer', itemOffered: { '@type': 'Product', name: '火山石烤肠', category: '烧烤夜市小吃系列' } },
-          { '@type': 'Offer', itemOffered: { '@type': 'Product', name: '德式罗勒烤香肠', category: '西式餐饮食材系列' } },
-          { '@type': 'Offer', itemOffered: { '@type': 'Product', name: '台式飞鱼卵香肠', category: '高端台式食材系列' } },
-          { '@type': 'Offer', itemOffered: { '@type': 'Product', name: '海藻墨鱼肠', category: '日式餐饮食材系列' } },
-          { '@type': 'Offer', itemOffered: { '@type': 'Product', name: '老长沙大香肠', category: '特色餐饮食材系列' } },
-          { '@type': 'Offer', itemOffered: { '@type': 'Product', name: '墨鱼丸子', category: '火锅茶餐厅食材系列' } },
-        ],
-      },
-    },
-    {
-      '@type': 'FAQPage',
-      mainEntity: [...FAQ, ...GEO_QA].map(f => ({
-        '@type': 'Question',
-        name: f.q,
-        acceptedAnswer: { '@type': 'Answer', text: f.a },
-      })),
     },
     {
       '@type': 'WebSite',
