@@ -11,6 +11,7 @@ const WESTERN_PRODUCTS = [
     tags: ['德式草本风味', '出品规格稳定', '菜单主力'],
     desc: '罗勒与德式香料配方，风味层次丰富，区别于普通猪肉肠的单调咸鲜。适合作为西式简餐菜单的核心主菜，定价空间充足。',
     img: '/images/products/deluobo-kaoxiangchang.jpg',
+    pos: 'center center',
   },
   {
     title: '德式黑椒烤肠',
@@ -18,6 +19,7 @@ const WESTERN_PRODUCTS = [
     tags: ['黑椒辛香', '大众接受度高', '复购稳定'],
     desc: '黑椒与猪肉的经典搭配，风味辨识度强，消费者接受度高。适合作为引流款，降低新顾客的尝试门槛，带动首次消费转化。',
     img: '/images/products/dehejiao-kaochang.jpg',
+    pos: 'center center',
   },
   {
     title: '图林根风味香肠',
@@ -25,27 +27,31 @@ const WESTERN_PRODUCTS = [
     tags: ['图林根香料配方', '德式正宗', '菜单故事性强'],
     desc: '德国图林根州传统风味，马郁兰、肉豆蔻等香料赋予独特草本层次。适合强调正宗感的德式餐厅和酒吧，有清晰的产地故事可在菜单上讲。',
     img: '/images/products/tulinjin.jpg',
+    pos: 'center center',
   },
   {
     title: '德式盘肠',
     note: '视觉冲击 · 拼盘核心',
     tags: ['大规格', '拼盘首选', '客单价高'],
     desc: '大规格盘肠形态，视觉冲击力强，适合作为德式拼盘的核心食材。搭配啤酒的消费场景下能有效拉升桌台客单价。',
-    img: null,
+    img: '/images/products/panchang.JPG',
+    pos: 'center center',
   },
   {
-    title: '奥尔良风味烤肠',
-    note: '引流款 · 大众化',
-    tags: ['奥尔良风味', '接受度极高', '首单转化'],
-    desc: '奥尔良风味在国内市场接受度极高，适合作为菜单引流款，帮助门店快速建立初次消费转化，再通过德式系列提升客单价。',
-    img: null,
+    title: '墨西哥芝士香肠',
+    note: '创意融合 · 差异化',
+    tags: ['芝士内馅', '融合风味', '差异化卖点'],
+    desc: '墨西哥风味与芝士的创意结合，内馅芝士烤制后融化流出，视觉和口感双重冲击。适合希望在西式菜单上增加差异化记忆点的门店。',
+    img: '/images/products/moxigezhishi.JPG',
+    pos: 'center center',
   },
   {
     title: '德式拼盘套装',
     note: '套餐核心 · 高客单价',
     tags: ['多品类组合', '啤酒搭档', '聚会场景'],
     desc: '多款德式香肠组合呈现，定价通常在80-150元区间，是西式餐厅和酒吧菜单中客单价最高的品类之一，也是自然带动啤酒销量的最佳搭档。',
-    img: null,
+    img: '/images/products/deshipinpan.JPG',
+    pos: 'center center',
   },
 ];
 
@@ -167,7 +173,14 @@ export default function WesternPage() {
                 {p.img && (
                   <div style={{ width:'100%', aspectRatio:'4/3', overflow:'hidden', borderBottom:'1px solid var(--rule)' }}>
                     <img src={p.img} alt={p.title}
-                      style={{ width:'100%', height:'100%', objectFit:'cover', display:'block', transition:'transform .4s ease' }}
+                      style={{
+                        width:'100%', height:'100%',
+                        objectFit:'cover',
+                        objectPosition: p.pos || 'center center',
+                        display:'block',
+                        transition:'transform .4s ease',
+                        imageOrientation:'from-image',
+                      }}
                       onMouseOver={e => e.currentTarget.style.transform='scale(1.04)'}
                       onMouseOut={e => e.currentTarget.style.transform='scale(1)'}
                     />
