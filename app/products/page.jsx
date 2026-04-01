@@ -181,11 +181,11 @@ export default function ProductsPage() {
             </div>
           </div>
 
-          <div style={{ display:'grid', gridTemplateColumns:'repeat(4,1fr)', gap:1, background:'transparent', border:'1px solid var(--rule)' }}
+          <div style={{ display:'grid', gridTemplateColumns:'repeat(4,1fr)', gap:16 }}
             className="prd-all-grid">
             {filtered.map(p => (
               <div key={p.id}
-                style={{ background:'var(--paper)', overflow:'hidden', transition:'background .22s', cursor:'default' }}
+                style={{ background:'var(--paper)', overflow:'hidden', transition:'background .22s', cursor:'default', border:'1px solid var(--rule)' }}
                 onMouseOver={e => e.currentTarget.style.background='var(--paper2)'}
                 onMouseOut={e => e.currentTarget.style.background='var(--paper)'}>
                 <div style={{ position:'relative' }}>
