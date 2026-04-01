@@ -7,18 +7,15 @@ import { SiteFrame, useSiteNav } from '../_site/shared';
 const ALL_PRODUCTS = [
   // ── 台式香肠 ──
   { id:1,  name:'台式原味香肠',     cat:'台式香肠', img:'/images/products/taiwan/taiwan-yuanwei.jpg',    spec:'500克/10根 20包/件', isNew:false },
-  { id:2,  name:'台式黑胡椒香肠',   cat:'台式香肠', img:'/images/products/taiwan/taiwan-heijiao.jpg',    spec:'500克/10根 20包/件', isNew:false },
+  { id:2,  name:'台式黑胡椒香肠',   cat:'台式香肠', img:'/images/products/taiwan/taiwan-heijiao.jpg',   spec:'500克/10根 20包/件', isNew:false },
   { id:4,  name:'台式飞鱼卵香肠',   cat:'台式香肠', img:'/images/products/taiwan/taiwan-feiyuzi.jpg',   spec:'500克/10根 20包/件', isNew:false },
-  { id:5,  name:'台式墨鱼汁香肠',   cat:'台式香肠', img:null,                                            spec:'500克/10根 20包/件', isNew:false },
-  { id:6,  name:'台式蒜味香肠',     cat:'台式香肠', img:null,                                            spec:'500克/10根 20包/件', isNew:false },
   { id:7,  name:'台式高粱酒香肠',   cat:'台式香肠', img:'/images/products/taiwan/taiwan-gaoliang.jpg',  spec:'500克/10根 20包/件', isNew:false },
   { id:8,  name:'台式海苔香肠',     cat:'台式香肠', img:'/images/products/taiwan/taiwan-haitai.jpg',    spec:'500克/10根 20包/件', isNew:false },
   { id:9,  name:'台式芥末香肠',     cat:'台式香肠', img:'/images/products/taiwan/taiwan-jiemo.jpg',     spec:'500克/10根 20包/件', isNew:false },
   { id:10, name:'台式麻辣香肠',     cat:'台式香肠', img:'/images/products/taiwan/taiwan-mala.jpg',      spec:'500克/10根 20包/件', isNew:false },
   { id:11, name:'台式一口肠',       cat:'台式香肠', img:'/images/products/taiwan/taiwan-yikou.jpg',     spec:'500克/约32粒 20包/件', isNew:false },
   { id:12, name:'士林大香肠',       cat:'台式香肠', img:'/images/products/taiwan/taiwan-shilin.jpg',    spec:'500g/5根 20包/件',   isNew:false },
-  { id:13, name:'台式香肠拼盘',     cat:'台式香肠', img:'/images/products/taiwan/taiwan-pinpan.jpg',    spec:'300g/6根/包 35包/件', isNew:false },
-  { id:14, name:'高粱酒香肠',       cat:'台式香肠', img:null,                                            spec:'500g/10根',          isNew:false },
+  { id:13, name:'台式香肠拼盘',     cat:'台式香肠', img:'/images/products/taiwan/taiwan-pinpan.jpg',    spec:'300g/6根 35包/件',   isNew:false },
 
   // ── 西式系列 ──
   { id:15, name:'罗勒叶香肠',       cat:'西式系列', img:'/images/products/german/de-luobo.jpg',          spec:'400g/5根 25包/件',   isNew:false },
@@ -27,7 +24,6 @@ const ALL_PRODUCTS = [
   { id:18, name:'德式盘肠',         cat:'西式系列', img:'/images/products/german/de-panchang.jpg',       spec:'500g/5根 16包/件',   isNew:false },
   { id:19, name:'德式香肠拼盘',     cat:'西式系列', img:'/images/products/german/de-pinpan.jpg',         spec:'500g/6根 20包/件',   isNew:false },
   { id:20, name:'法兰克福香肠',     cat:'西式系列', img:'/images/products/german/falankfu.jpg',          spec:'450g/11-12根 25包/件', isNew:false },
-  { id:21, name:'慕尼黑白肠',       cat:'西式系列', img:null,                                            spec:'500g/5根 20包/件',   isNew:false },
   { id:22, name:'奶酪香肠',         cat:'西式系列', img:'/images/products/german/nailao-xiangchang.jpg', spec:'350g/5根 25包/件',   isNew:false },
   { id:23, name:'德式墨鱼肠',       cat:'西式系列', img:'/images/products/german/de-moyuchang.jpg',      spec:'400g/8根 30包/件',   isNew:true  },
   { id:24, name:'德式烟熏香肠',     cat:'西式系列', img:'/images/products/german/de-yanxun-990g.jpg',    spec:'990g/11根 12包/件',  isNew:false },
@@ -185,7 +181,7 @@ export default function ProductsPage() {
             </div>
           </div>
 
-          <div style={{ display:'grid', gridTemplateColumns:'repeat(4,1fr)', gap:1, background:'var(--rule)', border:'1px solid var(--rule)' }}
+          <div style={{ display:'grid', gridTemplateColumns:'repeat(4,1fr)', gap:1, background:'transparent', border:'1px solid var(--rule)' }}
             className="prd-all-grid">
             {filtered.map(p => (
               <div key={p.id}
