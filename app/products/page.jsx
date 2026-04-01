@@ -35,19 +35,19 @@ const ALL_PRODUCTS = [
   { id:26, name:'惠灵顿牛排包',     cat:'西式系列', img:'/images/products/german/niupaibao.jpg',         spec:null,                 isNew:true  },
 
   // ── 烤肉食材 ──
-  { id:27, name:'韩式风干肠',       cat:'烤肉食材', img:'/images/products/bbq/hansifenggan.jpg',         spec:'60包/件',            isNew:false },
-  { id:28, name:'彩虹小肉肠',       cat:'烤肉食材', img:'/images/products/bbq/sicai-xiaorouchang.jpg',   spec:'220克/21根 40包/件', isNew:false },
-  { id:29, name:'烤芝士条',         cat:'烤肉食材', img:'/images/products/bbq/zhishitiao.jpg',           spec:null,                 isNew:true  },
+  { id:27, name:'韩式风干肠',       cat:'烤肉食材', img:'/images/products/kaorou/hansifenggan.jpg',       spec:'60包/件',            isNew:false },
+  { id:28, name:'彩虹小肉肠',       cat:'烤肉食材', img:'/images/products/kaorou/sicai-xiaorouchang.jpg', spec:'220克/21根 40包/件', isNew:false },
+  { id:29, name:'烤芝士条',         cat:'烤肉食材', img:'/images/products/kaorou/zhishitiao.jpg',         spec:null,                 isNew:true  },
 
-  // ── 日韩炸物料理 ──
-  { id:30, name:'日式小红肠',       cat:'日韩料理', img:'/images/products/pork/rishi-xiaohongchang.jpg',  spec:'500g/约23-25根 20包/件', isNew:false },
-  { id:31, name:'骨付香肠',         cat:'日韩料理', img:'/images/products/bbq/gufuchang-500g.jpg',        spec:'500g/10根 20包/件',  isNew:false },
-  { id:32, name:'芝士猪排',         cat:'日韩料理', img:'/images/products/pork/rishi-zhishi-zhupai.jpg',  spec:'1.2kg/10片/包',      isNew:false },
-  { id:33, name:'爆浆芝士猪排',     cat:'日韩料理', img:'/images/products/bbq/baozhi-zhishi-zhupai.jpg',  spec:'1kg/10片 6包/件',    isNew:false },
-  { id:34, name:'厚切猪排',         cat:'日韩料理', img:'/images/products/bbq/houpai-750g.jpg',           spec:'750g/8片 19包/件',   isNew:false },
-  { id:35, name:'安格斯牛肉饼',     cat:'日韩料理', img:'/images/products/bbq/hewang-niuroupai.jpg',      spec:'100g/包 150包/件',   isNew:true  },
-  { id:36, name:'海苔炸虾圈',       cat:'日韩料理', img:'/images/products/pork/xiajuan.jpg',              spec:'10条/盘',            isNew:false },
-  { id:37, name:'拉丝芝士球',       cat:'日韩料理', img:'/images/products/pork/zhishiqiu.jpg',            spec:null,                 isNew:true  },
+  // ── 日韩料理 ──
+  { id:30, name:'日式小红肠',       cat:'日韩料理', img:'/images/products/rihan/rishi-xiaohongchang.jpg', spec:'500g/约23-25根 20包/件', isNew:false },
+  { id:31, name:'骨付香肠',         cat:'日韩料理', img:'/images/products/rihan/gufuchang-500g.jpg',      spec:'500g/10根 20包/件',  isNew:false },
+  { id:32, name:'芝士猪排',         cat:'日韩料理', img:'/images/products/rihan/rishi-zhishi-zhupai.jpg', spec:'1.2kg/10片/包',      isNew:false },
+  { id:33, name:'爆浆芝士猪排',     cat:'日韩料理', img:'/images/products/rihan/baozhi-zhishi-zhupai.jpg',spec:'1kg/10片 6包/件',    isNew:false },
+  { id:34, name:'厚切猪排',         cat:'日韩料理', img:'/images/products/rihan/houpai-750g.jpg',         spec:'750g/8片 19包/件',   isNew:false },
+  { id:35, name:'安格斯牛肉饼',     cat:'日韩料理', img:'/images/products/rihan/hewang-niuroupai.jpg',    spec:'100g/包 150包/件',   isNew:true  },
+  { id:36, name:'海苔炸虾圈',       cat:'日韩料理', img:'/images/products/rihan/xiajuan.jpg',             spec:'10条/盘',            isNew:false },
+  { id:37, name:'拉丝芝士球',       cat:'日韩料理', img:'/images/products/rihan/zhishiqiu.jpg',           spec:null,                 isNew:true  },
 
   // ── 特色香肠 ──
   { id:38, name:'老长沙大香肠',     cat:'特色香肠', img:'/images/products/special/laochang-a.jpg',       spec:'600g/5根 30包/件',   isNew:false },
