@@ -8,7 +8,6 @@ const ALL_PRODUCTS = [
   // ── 台式香肠 ──
   { id:1,  name:'台式原味香肠',     cat:'台式香肠', img:'/images/products/taiwan/taiwan-yuanwei.jpg',    spec:'500克/10根 20包/件', isNew:false },
   { id:2,  name:'台式黑胡椒香肠',   cat:'台式香肠', img:'/images/products/taiwan/taiwan-heijiao.jpg',    spec:'500克/10根 20包/件', isNew:false },
-  { id:3,  name:'台式玉米香肠',     cat:'台式香肠', img:'/images/products/taiwan/taiwan-yumi.jpg',       spec:'500克/10根 20包/件', isNew:false },
   { id:4,  name:'台式飞鱼卵香肠',   cat:'台式香肠', img:'/images/products/taiwan/taiwan-feiyuzi.jpg',   spec:'500克/10根 20包/件', isNew:false },
   { id:5,  name:'台式墨鱼汁香肠',   cat:'台式香肠', img:null,                                            spec:'500克/10根 20包/件', isNew:false },
   { id:6,  name:'台式蒜味香肠',     cat:'台式香肠', img:null,                                            spec:'500克/10根 20包/件', isNew:false },
