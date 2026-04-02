@@ -1735,11 +1735,24 @@ function NewsPage() {
    OTHER PAGES
 ═══════════════════════════════════════════════════════════════ */
 function HomePage({ nav }) {
+  const [slide, setSlide] = React.useState(0);
+  const SLIDES = [
+    '/images/cases/jiushi-sicai.jpg',
+    '/images/cases/need-nuomichang.jpg',
+    '/images/cases/shanye-nuomi.jpg',
+    '/images/cases/xita-fenggan.jpg',
+    '/images/cases/xita-sicai.jpg',
+  ];
+  React.useEffect(() => {
+    const t = setInterval(() => setSlide(s => (s + 1) % SLIDES.length), 3500);
+    return () => clearInterval(t);
+  }, []);
+
   return (
     <>
       <section className="hero">
         <div className="hero-deco">根</div>
-        <div className="hero-body">
+        <div className="hero-body" style={{ display:'grid', gridTemplateColumns:'52px 1fr 1fr', alignItems:'stretch' }}>
           <div className="hero-rail"><span className="hero-rail-txt">HAODAGEN · FOOD SUPPLY · 2025</span></div>
           <div className="hero-main">
             <div className="hero-ey"><div className="hero-ey-bar" /><span className="hero-ey-txt">餐饮食材选品参谋 · 江苏豪大根食品有限公司</span></div>
@@ -1749,6 +1762,39 @@ function HomePage({ nav }) {
               <button className="btn-dk" onClick={() => nav('contact')}>咨询合作</button>
               <button className="btn-out" onClick={() => nav('products')}>查看产品分类</button>
             </div>
+          </div>
+          {/* ── 右侧轮播 ── */}
+          <div style={{ position:'relative', overflow:'hidden', borderLeft:'1px solid var(--rule)', minHeight:400 }}>
+            {SLIDES.map((src, i) => (
+              <img key={src} src={src} alt={`合作案例${i+1}`}
+                style={{
+                  position:'absolute', inset:0,
+                  width:'100%', height:'100%',
+                  objectFit:'cover',
+                  opacity: i === slide ? 1 : 0,
+                  transition:'opacity .8s ease',
+                }}
+              />
+            ))}
+            {/* 指示点 */}
+            <div style={{ position:'absolute', bottom:20, left:'50%', transform:'translateX(-50%)', display:'flex', gap:8, zIndex:2 }}>
+              {SLIDES.map((_, i) => (
+                <button key={i} onClick={() => setSlide(i)}
+                  style={{
+                    width: i === slide ? 20 : 6, height:6,
+                    borderRadius:3,
+                    background: i === slide ? '#fff' : 'rgba(255,255,255,.5)',
+                    transition:'all .3s',
+                    padding:0,
+                  }}
+                />
+              ))}
+            </div>
+            {/* 左右箭头 */}
+            <button onClick={() => setSlide(s => (s - 1 + SLIDES.length) % SLIDES.length)}
+              style={{ position:'absolute', left:12, top:'50%', transform:'translateY(-50%)', width:32, height:32, borderRadius:'50%', background:'rgba(0,0,0,.3)', color:'#fff', fontSize:'1rem', display:'flex', alignItems:'center', justifyContent:'center', zIndex:2 }}>‹</button>
+            <button onClick={() => setSlide(s => (s + 1) % SLIDES.length)}
+              style={{ position:'absolute', right:12, top:'50%', transform:'translateY(-50%)', width:32, height:32, borderRadius:'50%', background:'rgba(0,0,0,.3)', color:'#fff', fontSize:'1rem', display:'flex', alignItems:'center', justifyContent:'center', zIndex:2 }}>›</button>
           </div>
         </div>
         <div className="hero-foot">
