@@ -1735,7 +1735,7 @@ function NewsPage() {
    OTHER PAGES
 ═══════════════════════════════════════════════════════════════ */
 function HomePage({ nav }) {
-  const [slide, setSlide] = React.useState(0);
+  const [slide, setSlide] = useState(0);
   const SLIDES = [
     '/images/cases/jiushi-sicai.jpg',
     '/images/cases/need-nuomichang.jpg',
@@ -1743,7 +1743,7 @@ function HomePage({ nav }) {
     '/images/cases/xita-fenggan.jpg',
     '/images/cases/xita-sicai.jpg',
   ];
-  React.useEffect(() => {
+  useEffect(() => {
     const t = setInterval(() => setSlide(s => (s + 1) % SLIDES.length), 3500);
     return () => clearInterval(t);
   }, []);
