@@ -1737,16 +1737,90 @@ function NewsPage() {
 function HomePage({ nav }) {
   const [slide, setSlide] = useState(0);
   const SLIDES = [
-    '/images/cases/jiushi-sicai.jpg',
-    '/images/cases/need-nuomichang.jpg',
-    '/images/cases/shanye-nuomi.jpg',
-    '/images/cases/xita-fenggan.jpg',
-    '/images/cases/xita-sicai.jpg',
+    { src:'/images/cases/jiushi-sicai.jpg',   name:'酒拾烤肉',   tag:'烤肉门店' },
+    { src:'/images/cases/need-nuomichang.jpg', name:'NEED韩式料理', tag:'韩式料理' },
+    { src:'/images/cases/shanye-nuomi.jpg',    name:'山野板扎',   tag:'烤肉门店' },
+    { src:'/images/cases/xita-fenggan.jpg',    name:'西塔老太太', tag:'连锁品牌' },
+    { src:'/images/cases/xita-sicai.jpg',      name:'西塔老太太', tag:'连锁品牌' },
   ];
   useEffect(() => {
     const t = setInterval(() => setSlide(s => (s + 1) % SLIDES.length), 3500);
     return () => clearInterval(t);
   }, []);
+
+  return (
+    <>
+      <section className="hero">
+        <div className="hero-deco">根</div>
+        <div className="hero-body" style={{ display:'grid', gridTemplateColumns:'52px 1fr 1fr', alignItems:'stretch' }}>
+          <div className="hero-rail"><span className="hero-rail-txt">HAODAGEN · FOOD SUPPLY · 2025</span></div>
+          <div className="hero-main">
+            <div className="hero-ey"><div className="hero-ey-bar" /><span className="hero-ey-txt">餐饮食材选品参谋 · 江苏豪大根食品有限公司</span></div>
+            <div><div className="hero-h1">为餐饮门店提供</div><div className="hero-h2">更匹配的产品方案</div></div>
+            <div className="hero-sub">围绕门店定位、客群和经营需求，提供选品策略、产品供应与定制贴牌服务——帮助客户更高效上新、稳定供货，实现降本增效。</div>
+            <div className="hero-ctas">
+              <button className="btn-dk" onClick={() => nav('contact')}>咨询合作</button>
+              <button className="btn-out" onClick={() => nav('products')}>查看产品分类</button>
+            </div>
+          </div>
+
+          {/* ── 右侧轮播 ── */}
+          <div style={{ position:'relative', borderLeft:'1px solid var(--rule)', display:'flex', flexDirection:'column' }}>
+            {/* 顶部说明 */}
+            <div style={{ padding:'20px 28px 16px', borderBottom:'1px solid var(--rule)', flexShrink:0 }}>
+              <div style={{ fontSize:'.58rem', letterSpacing:'.25em', color:'var(--amber)', textTransform:'uppercase', marginBottom:6 }}>Partner Scene</div>
+              <div style={{ fontFamily:'var(--serif)', fontSize:'.95rem', fontWeight:500, color:'var(--ink)' }}>头部餐饮门店使用场景</div>
+              <div style={{ fontSize:'.72rem', color:'var(--ink3)', marginTop:4 }}>来自合作门店的真实出品记录</div>
+            </div>
+
+            {/* 图片区 */}
+            <div style={{ position:'relative', flex:1, overflow:'hidden', minHeight:300 }}>
+              {SLIDES.map((s, i) => (
+                <img key={s.src} src={s.src} alt={s.name}
+                  style={{
+                    position:'absolute', inset:0,
+                    width:'100%', height:'100%',
+                    objectFit:'cover', objectPosition:'center',
+                    opacity: i === slide ? 1 : 0,
+                    transition:'opacity .8s ease',
+                  }}
+                />
+              ))}
+              {/* 底部渐变 + 门店名 */}
+              <div style={{ position:'absolute', bottom:0, left:0, right:0, background:'linear-gradient(transparent, rgba(0,0,0,.55))', padding:'32px 20px 16px', zIndex:2 }}>
+                <div style={{ display:'flex', alignItems:'center', gap:8 }}>
+                  <span style={{ fontSize:'.55rem', letterSpacing:'.15em', color:'rgba(255,255,255,.7)', background:'rgba(255,255,255,.15)', padding:'2px 8px', borderRadius:2 }}>{SLIDES[slide].tag}</span>
+                  <span style={{ fontSize:'.82rem', color:'#fff', fontFamily:'var(--serif)', fontWeight:500 }}>{SLIDES[slide].name}</span>
+                </div>
+              </div>
+              {/* 左右箭头 */}
+              <button onClick={() => setSlide(s => (s - 1 + SLIDES.length) % SLIDES.length)}
+                style={{ position:'absolute', left:10, top:'50%', transform:'translateY(-50%)', width:30, height:30, borderRadius:'50%', background:'rgba(0,0,0,.25)', color:'#fff', fontSize:'1.1rem', display:'flex', alignItems:'center', justifyContent:'center', zIndex:3 }}>‹</button>
+              <button onClick={() => setSlide(s => (s + 1) % SLIDES.length)}
+                style={{ position:'absolute', right:10, top:'50%', transform:'translateY(-50%)', width:30, height:30, borderRadius:'50%', background:'rgba(0,0,0,.25)', color:'#fff', fontSize:'1.1rem', display:'flex', alignItems:'center', justifyContent:'center', zIndex:3 }}>›</button>
+            </div>
+
+            {/* 指示点 */}
+            <div style={{ display:'flex', gap:6, padding:'12px 20px', borderTop:'1px solid var(--rule)', flexShrink:0 }}>
+              {SLIDES.map((s, i) => (
+                <button key={i} onClick={() => setSlide(i)}
+                  style={{ width: i === slide ? 18 : 5, height:5, borderRadius:3, background: i === slide ? 'var(--amber)' : 'var(--rule)', transition:'all .3s', padding:0, flexShrink:0 }} />
+              ))}
+              <span style={{ marginLeft:'auto', fontSize:'.62rem', color:'var(--ink3)' }}>{slide + 1} / {SLIDES.length}</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="hero-foot">
+          <div className="hero-foot-corner" />
+          {[['懂门店','围绕门店定位与经营需求做产品匹配'],['懂产品','多系列产品支撑上新与日常经营'],['懂合作','支持供货、贴牌与更长期协同合作']].map(([v,l]) => (
+            <div className="hero-stat" key={v}>
+              <div className="hero-stat-v">{v}</div>
+              <div className="hero-stat-l">{l}</div>
+            </div>
+          ))}
+        </div>
+      </section>
 
   return (
     <>
