@@ -1764,44 +1764,50 @@ function HomePage({ nav }) {
           </div>
 
           {/* ── 右侧轮播 ── */}
-          <div style={{ borderLeft:'1px solid var(--rule)', display:'flex', flexDirection:'column', justifyContent:'center' }}>
+          <div style={{ borderLeft:'1px solid var(--rule)', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', padding:'40px 48px', gap:24 }}>
             {/* 顶部说明 */}
-            <div style={{ padding:'20px 28px 14px', borderBottom:'1px solid var(--rule)' }}>
+            <div style={{ width:'100%' }}>
               <div style={{ fontSize:'.58rem', letterSpacing:'.25em', color:'var(--amber)', textTransform:'uppercase', marginBottom:6 }}>Partner Scene</div>
               <div style={{ fontFamily:'var(--serif)', fontSize:'.95rem', fontWeight:500, color:'var(--ink)' }}>合作超 100+ 头部餐饮</div>
               <div style={{ fontSize:'.72rem', color:'var(--ink3)', marginTop:4 }}>来自合作门店的真实出品记录</div>
             </div>
 
-            {/* 图片区 — 原始比例不裁剪 */}
-            <div style={{ position:'relative', overflow:'hidden' }}>
-              {SLIDES.map((s, i) => (
-                <img key={s.src} src={s.src} alt={s.name}
-                  style={{
-                    display: i === slide ? 'block' : 'none',
-                    width:'100%',
-                    height:'auto',
-                  }}
-                />
-              ))}
-              {/* 左右箭头 */}
-              <button onClick={() => setSlide(s => (s - 1 + SLIDES.length) % SLIDES.length)}
-                style={{ position:'absolute', left:10, top:'50%', transform:'translateY(-50%)', width:28, height:28, borderRadius:'50%', background:'rgba(0,0,0,.4)', color:'#fff', fontSize:'1rem', display:'flex', alignItems:'center', justifyContent:'center', zIndex:3 }}>‹</button>
-              <button onClick={() => setSlide(s => (s + 1) % SLIDES.length)}
-                style={{ position:'absolute', right:10, top:'50%', transform:'translateY(-50%)', width:28, height:28, borderRadius:'50%', background:'rgba(0,0,0,.4)', color:'#fff', fontSize:'1rem', display:'flex', alignItems:'center', justifyContent:'center', zIndex:3 }}>›</button>
+            {/* 图片框 — 3:4 比例，带装饰边框 */}
+            <div style={{ position:'relative', width:200, flexShrink:0 }}>
+              {/* 装饰边框（右下偏移） */}
+              <div style={{ position:'absolute', top:10, left:10, right:-10, bottom:-10, border:'1px solid var(--amber-line)', pointerEvents:'none', zIndex:0 }} />
+              {/* 图片容器 3:4 */}
+              <div style={{ position:'relative', width:200, paddingBottom:'133%', overflow:'hidden', border:'1px solid var(--rule)', background:'var(--paper3)', zIndex:1 }}>
+                {SLIDES.map((s, i) => (
+                  <img key={s.src} src={s.src} alt={s.name}
+                    style={{
+                      position:'absolute', inset:0,
+                      width:'100%', height:'100%',
+                      objectFit:'cover', objectPosition:'center',
+                      opacity: i === slide ? 1 : 0,
+                      transition:'opacity .8s ease',
+                    }}
+                  />
+                ))}
+                <button onClick={() => setSlide(s => (s - 1 + SLIDES.length) % SLIDES.length)}
+                  style={{ position:'absolute', left:8, top:'50%', transform:'translateY(-50%)', width:24, height:24, borderRadius:'50%', background:'rgba(0,0,0,.35)', color:'#fff', fontSize:'.9rem', display:'flex', alignItems:'center', justifyContent:'center', zIndex:3 }}>‹</button>
+                <button onClick={() => setSlide(s => (s + 1) % SLIDES.length)}
+                  style={{ position:'absolute', right:8, top:'50%', transform:'translateY(-50%)', width:24, height:24, borderRadius:'50%', background:'rgba(0,0,0,.35)', color:'#fff', fontSize:'.9rem', display:'flex', alignItems:'center', justifyContent:'center', zIndex:3 }}>›</button>
+              </div>
             </div>
 
-            {/* 门店名 + 产品 */}
-            <div style={{ padding:'16px 24px 12px', borderTop:'1px solid var(--rule)' }}>
+            {/* 门店名 + 产品 + 指示点 */}
+            <div style={{ width:'100%' }}>
               <div style={{ display:'flex', alignItems:'baseline', gap:8, flexWrap:'wrap' }}>
-                <span style={{ fontFamily:'var(--serif)', fontSize:'1.15rem', fontWeight:600, color:'var(--ink)' }}>{SLIDES[slide].name}</span>
-                <span style={{ fontSize:'.78rem', color:'var(--ink3)' }}>——{SLIDES[slide].product}</span>
+                <span style={{ fontFamily:'var(--serif)', fontSize:'1.1rem', fontWeight:600, color:'var(--ink)' }}>{SLIDES[slide].name}</span>
+                <span style={{ fontSize:'.75rem', color:'var(--ink3)' }}>——{SLIDES[slide].product}</span>
               </div>
-              <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', marginTop:8 }}>
+              <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', marginTop:10 }}>
                 <span style={{ fontSize:'.6rem', letterSpacing:'.15em', color:'var(--amber)', background:'var(--amber-pale)', padding:'2px 8px', borderRadius:2 }}>{SLIDES[slide].tag}</span>
-                <div style={{ display:'flex', gap:6 }}>
+                <div style={{ display:'flex', gap:5 }}>
                   {SLIDES.map((s, i) => (
                     <button key={i} onClick={() => setSlide(i)}
-                      style={{ width: i === slide ? 18 : 5, height:5, borderRadius:3, background: i === slide ? 'var(--amber)' : 'var(--rule)', transition:'all .3s', padding:0 }} />
+                      style={{ width: i === slide ? 16 : 4, height:4, borderRadius:2, background: i === slide ? 'var(--amber)' : 'var(--rule)', transition:'all .3s', padding:0 }} />
                   ))}
                 </div>
               </div>
