@@ -1737,11 +1737,11 @@ function NewsPage() {
 function HomePage({ nav }) {
   const [slide, setSlide] = useState(0);
   const SLIDES = [
-    { src:'/images/cases/jiushi-sicai.jpg',   name:'酒拾烤肉',   tag:'烤肉门店' },
-    { src:'/images/cases/need-nuomichang.jpg', name:'NEED韩式料理', tag:'韩式料理' },
-    { src:'/images/cases/shanye-nuomi.jpg',    name:'山野板扎',   tag:'烤肉门店' },
-    { src:'/images/cases/xita-fenggan.jpg',    name:'西塔老太太', tag:'连锁品牌' },
-    { src:'/images/cases/xita-sicai.jpg',      name:'西塔老太太', tag:'连锁品牌' },
+    { src:'/images/cases/jiushi-sicai.jpg',   name:'酒拾烤肉',   product:'彩虹小肉肠', tag:'烤肉门店' },
+    { src:'/images/cases/need-nuomichang.jpg', name:'NEED韩式料理', product:'糯米肉肠',  tag:'韩式料理' },
+    { src:'/images/cases/shanye-nuomi.jpg',    name:'山野板扎',   product:'糯米肉肠',  tag:'烤肉门店' },
+    { src:'/images/cases/xita-fenggan.jpg',    name:'西塔老太太', product:'风干肠',    tag:'连锁品牌' },
+    { src:'/images/cases/xita-sicai.jpg',      name:'西塔老太太', product:'彩虹小肉肠', tag:'连锁品牌' },
   ];
   useEffect(() => {
     const t = setInterval(() => setSlide(s => (s + 1) % SLIDES.length), 3500);
@@ -1767,14 +1767,14 @@ function HomePage({ nav }) {
           {/* ── 右侧轮播 ── */}
           <div style={{ position:'relative', borderLeft:'1px solid var(--rule)', display:'flex', flexDirection:'column' }}>
             {/* 顶部说明 */}
-            <div style={{ padding:'20px 28px 16px', borderBottom:'1px solid var(--rule)', flexShrink:0 }}>
+            <div style={{ padding:'20px 28px 14px', borderBottom:'1px solid var(--rule)', flexShrink:0 }}>
               <div style={{ fontSize:'.58rem', letterSpacing:'.25em', color:'var(--amber)', textTransform:'uppercase', marginBottom:6 }}>Partner Scene</div>
-              <div style={{ fontFamily:'var(--serif)', fontSize:'.95rem', fontWeight:500, color:'var(--ink)' }}>头部餐饮门店使用场景</div>
+              <div style={{ fontFamily:'var(--serif)', fontSize:'.95rem', fontWeight:500, color:'var(--ink)' }}>合作超 100+ 头部餐饮</div>
               <div style={{ fontSize:'.72rem', color:'var(--ink3)', marginTop:4 }}>来自合作门店的真实出品记录</div>
             </div>
 
-            {/* 图片区 */}
-            <div style={{ position:'relative', flex:1, overflow:'hidden', minHeight:300 }}>
+            {/* 图片区 — 固定高度不拉伸 */}
+            <div style={{ position:'relative', overflow:'hidden', height:260, flexShrink:0 }}>
               {SLIDES.map((s, i) => (
                 <img key={s.src} src={s.src} alt={s.name}
                   style={{
@@ -1786,22 +1786,26 @@ function HomePage({ nav }) {
                   }}
                 />
               ))}
-              {/* 底部渐变 + 门店名 */}
-              <div style={{ position:'absolute', bottom:0, left:0, right:0, background:'linear-gradient(transparent, rgba(0,0,0,.55))', padding:'32px 20px 16px', zIndex:2 }}>
-                <div style={{ display:'flex', alignItems:'center', gap:8 }}>
-                  <span style={{ fontSize:'.55rem', letterSpacing:'.15em', color:'rgba(255,255,255,.7)', background:'rgba(255,255,255,.15)', padding:'2px 8px', borderRadius:2 }}>{SLIDES[slide].tag}</span>
-                  <span style={{ fontSize:'.82rem', color:'#fff', fontFamily:'var(--serif)', fontWeight:500 }}>{SLIDES[slide].name}</span>
-                </div>
-              </div>
               {/* 左右箭头 */}
               <button onClick={() => setSlide(s => (s - 1 + SLIDES.length) % SLIDES.length)}
-                style={{ position:'absolute', left:10, top:'50%', transform:'translateY(-50%)', width:30, height:30, borderRadius:'50%', background:'rgba(0,0,0,.25)', color:'#fff', fontSize:'1.1rem', display:'flex', alignItems:'center', justifyContent:'center', zIndex:3 }}>‹</button>
+                style={{ position:'absolute', left:10, top:'50%', transform:'translateY(-50%)', width:28, height:28, borderRadius:'50%', background:'rgba(0,0,0,.28)', color:'#fff', fontSize:'1rem', display:'flex', alignItems:'center', justifyContent:'center', zIndex:3 }}>‹</button>
               <button onClick={() => setSlide(s => (s + 1) % SLIDES.length)}
-                style={{ position:'absolute', right:10, top:'50%', transform:'translateY(-50%)', width:30, height:30, borderRadius:'50%', background:'rgba(0,0,0,.25)', color:'#fff', fontSize:'1.1rem', display:'flex', alignItems:'center', justifyContent:'center', zIndex:3 }}>›</button>
+                style={{ position:'absolute', right:10, top:'50%', transform:'translateY(-50%)', width:28, height:28, borderRadius:'50%', background:'rgba(0,0,0,.28)', color:'#fff', fontSize:'1rem', display:'flex', alignItems:'center', justifyContent:'center', zIndex:3 }}>›</button>
+            </div>
+
+            {/* 门店名 + 产品 */}
+            <div style={{ padding:'16px 24px 14px', borderTop:'1px solid var(--rule)', flexShrink:0 }}>
+              <div style={{ display:'flex', alignItems:'baseline', gap:8, flexWrap:'wrap' }}>
+                <span style={{ fontFamily:'var(--serif)', fontSize:'1.15rem', fontWeight:600, color:'var(--ink)' }}>{SLIDES[slide].name}</span>
+                <span style={{ fontSize:'.78rem', color:'var(--ink3)' }}>——{SLIDES[slide].product}</span>
+              </div>
+              <div style={{ display:'flex', alignItems:'center', gap:10, marginTop:8 }}>
+                <span style={{ fontSize:'.6rem', letterSpacing:'.15em', color:'var(--amber)', background:'var(--amber-pale)', padding:'2px 8px', borderRadius:2 }}>{SLIDES[slide].tag}</span>
+              </div>
             </div>
 
             {/* 指示点 */}
-            <div style={{ display:'flex', gap:6, padding:'12px 20px', borderTop:'1px solid var(--rule)', flexShrink:0 }}>
+            <div style={{ display:'flex', gap:6, padding:'10px 24px 16px', flexShrink:0 }}>
               {SLIDES.map((s, i) => (
                 <button key={i} onClick={() => setSlide(i)}
                   style={{ width: i === slide ? 18 : 5, height:5, borderRadius:3, background: i === slide ? 'var(--amber)' : 'var(--rule)', transition:'all .3s', padding:0, flexShrink:0 }} />
