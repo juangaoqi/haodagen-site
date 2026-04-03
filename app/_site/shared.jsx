@@ -1772,16 +1772,16 @@ function HomePage({ nav }) {
               <div style={{ fontSize:'.72rem', color:'var(--ink3)', marginTop:4 }}>来自合作门店的真实出品记录</div>
             </div>
 
-            {/* 图片区 — 完整显示 */}
-            <div style={{ position:'relative', background:'#1a1a1a', overflow:'hidden' }}>
+            {/* 图片区 — 填满无黑边 */}
+            <div style={{ position:'relative', overflow:'hidden', height:280 }}>
               {SLIDES.map((s, i) => (
                 <img key={s.src} src={s.src} alt={s.name}
                   style={{
-                    display: i === slide ? 'block' : 'none',
-                    width:'100%',
-                    height:'auto',
-                    maxHeight:320,
-                    objectFit:'contain',
+                    position:'absolute', inset:0,
+                    width:'100%', height:'100%',
+                    objectFit:'cover', objectPosition:'center',
+                    opacity: i === slide ? 1 : 0,
+                    transition:'opacity .8s ease',
                   }}
                 />
               ))}
