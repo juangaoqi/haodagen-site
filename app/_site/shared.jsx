@@ -1764,7 +1764,7 @@ function HomePage({ nav }) {
           </div>
 
           {/* ── 右侧轮播 ── */}
-          <div style={{ borderLeft:'1px solid var(--rule)', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', padding:'40px 48px', gap:20 }}>
+          <div style={{ borderLeft:'1px solid var(--rule)', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', padding:'32px 32px', gap:20 }}>
             {/* 顶部说明 */}
             <div style={{ width:'100%' }}>
               <div style={{ fontSize:'.58rem', letterSpacing:'.25em', color:'var(--amber)', textTransform:'uppercase', marginBottom:6 }}>Partner Scene</div>
@@ -1773,7 +1773,7 @@ function HomePage({ nav }) {
             </div>
 
             {/* 图片框 — 3:4，四角装饰 */}
-            <div style={{ position:'relative', width:'100%', maxWidth:320 }}>
+            <div style={{ position:'relative', width:'100%', maxWidth:560 }}>
               {/* 四角装饰 */}
               {[
                 { top:0, left:0, borderTop:`2px solid var(--amber)`, borderLeft:`2px solid var(--amber)`, width:18, height:18 },
