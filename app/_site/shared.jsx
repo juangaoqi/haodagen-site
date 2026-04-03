@@ -1751,7 +1751,6 @@ function HomePage({ nav }) {
   return (
     <>
       <section className="hero">
-        <div className="hero-deco">根</div>
         <div className="hero-body" style={{ display:'grid', gridTemplateColumns:'52px 1fr 1fr', alignItems:'stretch' }}>
           <div className="hero-rail"><span className="hero-rail-txt">HAODAGEN · FOOD SUPPLY · 2025</span></div>
           <div className="hero-main">
@@ -1765,54 +1764,63 @@ function HomePage({ nav }) {
           </div>
 
           {/* ── 右侧轮播 ── */}
-          <div style={{ position:'relative', borderLeft:'1px solid var(--rule)', display:'flex', flexDirection:'column' }}>
+          <div style={{ borderLeft:'1px solid var(--rule)', display:'flex', flexDirection:'column', justifyContent:'center' }}>
             {/* 顶部说明 */}
-            <div style={{ padding:'20px 28px 14px', borderBottom:'1px solid var(--rule)', flexShrink:0 }}>
+            <div style={{ padding:'20px 28px 14px', borderBottom:'1px solid var(--rule)' }}>
               <div style={{ fontSize:'.58rem', letterSpacing:'.25em', color:'var(--amber)', textTransform:'uppercase', marginBottom:6 }}>Partner Scene</div>
               <div style={{ fontFamily:'var(--serif)', fontSize:'.95rem', fontWeight:500, color:'var(--ink)' }}>合作超 100+ 头部餐饮</div>
               <div style={{ fontSize:'.72rem', color:'var(--ink3)', marginTop:4 }}>来自合作门店的真实出品记录</div>
             </div>
 
-            {/* 图片区 — 固定高度不拉伸 */}
-            <div style={{ position:'relative', overflow:'hidden', height:260, flexShrink:0 }}>
+            {/* 图片区 — 完整显示 */}
+            <div style={{ position:'relative', background:'#1a1a1a', overflow:'hidden' }}>
               {SLIDES.map((s, i) => (
                 <img key={s.src} src={s.src} alt={s.name}
                   style={{
-                    position:'absolute', inset:0,
-                    width:'100%', height:'100%',
-                    objectFit:'cover', objectPosition:'center',
-                    opacity: i === slide ? 1 : 0,
-                    transition:'opacity .8s ease',
+                    display: i === slide ? 'block' : 'none',
+                    width:'100%',
+                    height:'auto',
+                    maxHeight:320,
+                    objectFit:'contain',
                   }}
                 />
               ))}
               {/* 左右箭头 */}
               <button onClick={() => setSlide(s => (s - 1 + SLIDES.length) % SLIDES.length)}
-                style={{ position:'absolute', left:10, top:'50%', transform:'translateY(-50%)', width:28, height:28, borderRadius:'50%', background:'rgba(0,0,0,.28)', color:'#fff', fontSize:'1rem', display:'flex', alignItems:'center', justifyContent:'center', zIndex:3 }}>‹</button>
+                style={{ position:'absolute', left:10, top:'50%', transform:'translateY(-50%)', width:28, height:28, borderRadius:'50%', background:'rgba(0,0,0,.4)', color:'#fff', fontSize:'1rem', display:'flex', alignItems:'center', justifyContent:'center', zIndex:3 }}>‹</button>
               <button onClick={() => setSlide(s => (s + 1) % SLIDES.length)}
-                style={{ position:'absolute', right:10, top:'50%', transform:'translateY(-50%)', width:28, height:28, borderRadius:'50%', background:'rgba(0,0,0,.28)', color:'#fff', fontSize:'1rem', display:'flex', alignItems:'center', justifyContent:'center', zIndex:3 }}>›</button>
+                style={{ position:'absolute', right:10, top:'50%', transform:'translateY(-50%)', width:28, height:28, borderRadius:'50%', background:'rgba(0,0,0,.4)', color:'#fff', fontSize:'1rem', display:'flex', alignItems:'center', justifyContent:'center', zIndex:3 }}>›</button>
             </div>
 
             {/* 门店名 + 产品 */}
-            <div style={{ padding:'16px 24px 14px', borderTop:'1px solid var(--rule)', flexShrink:0 }}>
+            <div style={{ padding:'16px 24px 12px', borderTop:'1px solid var(--rule)' }}>
               <div style={{ display:'flex', alignItems:'baseline', gap:8, flexWrap:'wrap' }}>
                 <span style={{ fontFamily:'var(--serif)', fontSize:'1.15rem', fontWeight:600, color:'var(--ink)' }}>{SLIDES[slide].name}</span>
                 <span style={{ fontSize:'.78rem', color:'var(--ink3)' }}>——{SLIDES[slide].product}</span>
               </div>
-              <div style={{ display:'flex', alignItems:'center', gap:10, marginTop:8 }}>
+              <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', marginTop:8 }}>
                 <span style={{ fontSize:'.6rem', letterSpacing:'.15em', color:'var(--amber)', background:'var(--amber-pale)', padding:'2px 8px', borderRadius:2 }}>{SLIDES[slide].tag}</span>
+                <div style={{ display:'flex', gap:6 }}>
+                  {SLIDES.map((s, i) => (
+                    <button key={i} onClick={() => setSlide(i)}
+                      style={{ width: i === slide ? 18 : 5, height:5, borderRadius:3, background: i === slide ? 'var(--amber)' : 'var(--rule)', transition:'all .3s', padding:0 }} />
+                  ))}
+                </div>
               </div>
             </div>
-
-            {/* 指示点 */}
-            <div style={{ display:'flex', gap:6, padding:'10px 24px 16px', flexShrink:0 }}>
-              {SLIDES.map((s, i) => (
-                <button key={i} onClick={() => setSlide(i)}
-                  style={{ width: i === slide ? 18 : 5, height:5, borderRadius:3, background: i === slide ? 'var(--amber)' : 'var(--rule)', transition:'all .3s', padding:0, flexShrink:0 }} />
-              ))}
-              <span style={{ marginLeft:'auto', fontSize:'.62rem', color:'var(--ink3)' }}>{slide + 1} / {SLIDES.length}</span>
-            </div>
           </div>
+        </div>
+
+        <div className="hero-foot">
+          <div className="hero-foot-corner" />
+          {[['懂门店','围绕门店定位与经营需求做产品匹配'],['懂产品','多系列产品支撑上新与日常经营'],['懂合作','支持供货、贴牌与更长期协同合作']].map(([v,l]) => (
+            <div className="hero-stat" key={v}>
+              <div className="hero-stat-v">{v}</div>
+              <div className="hero-stat-l">{l}</div>
+            </div>
+          ))}
+        </div>
+      </section>
         </div>
 
         <div className="hero-foot">
