@@ -1821,18 +1821,6 @@ function HomePage({ nav }) {
           ))}
         </div>
       </section>
-        </div>
-
-        <div className="hero-foot">
-          <div className="hero-foot-corner" />
-          {[['懂门店','围绕门店定位与经营需求做产品匹配'],['懂产品','多系列产品支撑上新与日常经营'],['懂合作','支持供货、贴牌与更长期协同合作']].map(([v,l]) => (
-            <div className="hero-stat" key={v}>
-              <div className="hero-stat-v">{v}</div>
-              <div className="hero-stat-l">{l}</div>
-            </div>
-          ))}
-        </div>
-      </section>
 
       <section className="sec">
         <div className="W">
